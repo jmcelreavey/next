@@ -1,0 +1,24 @@
+Account Lifecycle
+Account Booking
+Promotion Booking (inc. closed days + closed days promo override)
+
+---
+
+    # @MCC-238 @conor
+    # Scenario: [MCC-238] I can view a list of services
+    #     Given On customer I navigate to /extras
+    #     Then I should see a list of services
+
+    # @MCC-241 @conor
+    # Scenario: [MCC-241] I can create a valet service
+    #     Given on admin I navigate to /packages
+    #     When I click on "Add New Valet Package" from "admin" "packages"
+    #     And I create a valet package
+    #     Then I should see the valet package
+
+    # @MCC-365 @conor
+    # Scenario: [MCC-365] I ca create a workshop service
+    #     Given on admin I navigate to /packages
+    #     When I click on "Add New Workshop Package" from "admin" "packages"
+    #     And I create a workshop package
+    #     Then I should see the workshop package

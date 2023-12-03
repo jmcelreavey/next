@@ -1,0 +1,43 @@
+# ContextMenu.stories
+
+import { Canvas, Meta } from "@storybook/addon-docs"; import { Button, slowly } from "morse-react"; import { ContextMenu } from "./ContextMenu"; import { KebabContextMenu } from "./KebabContextMenu"; import { EllipsisContextMenu } from "./EllipsisContextMenu"; import { IconContextMenu } from "./IconContextMenu"; import { TriggeredLilyPadContext } from "../modals-and-dialogs/LilyPad/TriggeredLilyPad";
+
+## Context Menus
+
+Context Menus are a type of `TriggeredLilyPad` that presents a menu of options. It is a very common way for user interfaces to provide lots of options without overwhelming the user.
+
+Because we use an anchored lily pad, the context menu will do its best to reposition itself to be seen - for example if it would normally open up below the bottom of the page.
+
+The `ContextMenu` component is essentially a `Menu` but with a trigger.
+
+{ return context.show()}>Click for Options; \}} > console.log("option 1")}> Option 1  console.log("option 2")} className="+neg"> Option 2  console.log("option 3")}> Option 3
+
+By design context menus will automatically close when any Button is clicked. If a button triggers an asynchronous action, the busy indication should happen elsewhere in the interface, for example in the component that hosted the context menu.
+
+If your button launches a dialog, the dialog button should show the busy state.
+
+In exceptional circumstances you may want to keep the menu open until you want to close it programmatically. In this case, you should use `event.stopPropagation()` in your click handler and use the `TriggeredLilyPadContext` to access the `hide()` function.
+
+{ return context.show()}>Click for Options; \}} > {(context) => ( <> { event.stopPropagation(); return slowly(() => { context.hide(); }); \}} > Do Something Slow  context.hide()}>Close instantly Option 3 )}
+
+Alternatively, you can add the `dontAutoClose` prop:
+
+{ return context.show()}>Click for Options; \}} > console.log("option 1")}> Option 1  console.log("option 2")}> Option 2  console.log("option 3")}> Option 3
+
+Test
+
+### IconContextMenu
+
+Often a context menu is driven from a simple icon button. IconContextMenu simply creates a context menu with a button trigger and mandates an icon prop be passed as for any button.
+
+Option 1 Option 2 Option 3
+
+### KebabContextMenu and EllipsisContextMenu
+
+A simple evolution of the IconContextMenu that just renders a kebab or ellipsis icon button for the trigger.
+
+Option 1 Option 2 Option 3 Option 4 Option 5 Option 6
+
+KebabContextMenu and EllipsisContextMenu supports all the props of a normal morse Button component and passes these props through to the trigger button.
+
+Option 1 Option 2 Option 3

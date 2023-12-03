@@ -1,0 +1,21 @@
+.c-toaster {
+  justify-content: flex-start;
+  @include var(padding, responsive-padding);
+}
+
+.c-feedback {
+  .c-toast & {
+    animation: slide-in-from-bottom 0.2s linear;
+    background-color: var(--color-dark);
+    color: white;
+    @include padding($padding);
+    border-radius: $radius;
+    box-shadow: $shadow-heavy;
+    pointer-events: all;
+    a {
+      color: white;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+  }
+}

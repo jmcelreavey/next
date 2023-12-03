@@ -1,0 +1,125 @@
+# Timeline
+
+import { Canvas, Meta } from "@storybook/addon-docs"; import { Timeline } from "./Timeline"; import { Button, Icon, Input } from "morse-react"; import { Header } from "../../header/Header"; import { Title } from "../../content/Title/Title"; import { Search } from "../../inputs/Search/Search"; import { AcornIcon } from "../../content/Icons/AcornIcon";
+
+## Timeline
+
+A timeline component provides a nice visual representation of a history of activity on a paricular record.
+
+**CSS Variables**
+
+```css
+.ac-timeline {
+  --ac-timeline-icon-box: calc(var(--unit) * 1.5);
+  --ac-timeline-icon-color-bg: var(--color-accent);
+  --ac-timeline-icon-color-fg: var(--color-site);
+  --ac-timeline-item-space: calc(var(--unit) * 1.5);
+  --ac-timeline-icon-border: none;
+  --ac-timeline-item-gap: var(--unit);
+  --ac-timeline-icon-size: 0.6em;
+
+  --ac-timeline-line-color: var(--border-color);
+  --ac-timeline-line-width: 1px;
+  --ac-timeline-line-opacity: 1;
+  --ac-timeline-line-gap: calc(var(--ac-timeline-line-width) * 4);
+
+  --ac-timeline-content-gap: calc(var(--unit) / 4);
+  --ac-timeline-content-weight: bold;
+
+  --ac-timeline-more-weight: normal;
+
+  --ac-timeline-note-color-bg: var(--color-shade-x05);
+  --ac-timeline-note-pad: calc(var(--unit) / 2);
+  --ac-timeline-note-radius: var(--radius);
+  --ac-timeline-note-weight: normal;
+
+  --ac-timeline-credit-gap: calc(var(--gap) / 2);
+  --ac-timeline-credit-size: 0.9em;
+  --ac-timeline-credit-text-color: var( --color-text-alt );
+
+  --ac-timeline-menu-width: calc(var(--unit) * 2);
+
+  --ac-timeline-font-size: 1em;
+  --ac-timeline-text-color: var( --color-text );
+}
+```
+
+### Basic Timeline
+
+The essential components are the `Timeline` component which is the container for one or more items, and the `TimelineItem` component which contains the content of a single entry. \<Timeline.Item> \<Timeline.ItemContent>
+
+This happened
+
+\</Timeline.ItemContent> \</Timeline.Item> \<Timeline.Item> \<Timeline.ItemContent>
+
+As did this
+
+\</Timeline.ItemContent> \</Timeline.Item>
+
+```jsx
+<Timeline>
+  <Timeline.Item>
+    <Timeline.ItemContent>
+      <p>This happened</p>
+    </Timeline.ItemContent>
+  </Timeline.Item>
+  <Timeline.Item>
+    <Timeline.ItemContent>
+      <p>As did this</p>
+    </Timeline.ItemContent>
+  </Timeline.Item>
+</Timeline>
+```
+
+### Icons
+
+For timelines with mixed sources of content it can be useful to indicate this with an icon. Use the `icon` prop on the `Timeline.Item` component and add the `icons` prop to the timeline itself.
+
+A search was peformed
+
+Something minor happened
+
+The user had a conversation.
+
+Notice that the `"blank"` icon name is reserved and injects a special element that signifies no icon at all. Useful when no icon is available or to indicate that an event is minor or automated etc.
+
+The left hand margin that is normally used for icons can actually have other elements instead. However you should ensure there is a single parent and put the `ac-timeline__item-icon` on that parent to ensure it is positioned correctly.
+
+This item has a checkbox instead of an icon as an 'icon'
+
+The user sent an email.
+
+### Item content
+
+From these initial examples you can see that `Timeline.Item` and `Timeline.ItemContent` is very basic. They simply ensures that the position of content and icons are correct and allows the project stylesheet to style each part correctly.
+
+The content inside `Timeline.ItemContent` is completely flexible.
+
+There are some standard content components however.
+
+#### Timeline.ItemContentEvent
+
+A simple message about an occurring event.
+
+The patent started pending.
+
+#### Timeline.ItemContentNote
+
+A note recorded by a user
+
+The customer called to report a fault however we could not determine the cause. Due a call back by John.
+
+#### Timeline.ItemContentCredit
+
+The customer called to report a fault however we could not determine the cause. Due a call back by John. Called the customer however there was no answer
+
+The message component formats a message, with an author and a date and time.
+
+Activity
+
+1. &#x20;Performance review for John has been completed.{" "} [View results ](Timeline.mdx)Anne-Nolinky January 2, 2020
+2. &#x20;User login successful. Profile updates saved. File upload complete. Task assigned to team member. [Anne-Marie ](Timeline.mdx)January 2, 2020
+3. Event without an icon. [Anne-Marie ](Timeline.mdx)January 2, 2020
+4.  A note was created. "I called Jimmy today and left a voicemail about his late payment..."{" "} [View note ](Timeline.mdx)[Anne-Marie](Timeline.mdx)
+
+    January 2, 2020

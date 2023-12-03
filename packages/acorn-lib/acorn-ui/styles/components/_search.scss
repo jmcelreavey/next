@@ -1,0 +1,41 @@
+.c-search {
+  @include position(relative);
+
+  .c-icon {
+    @include position(absolute);
+    top: 50%;
+    transform: translateY(-55%);
+    width: $unit * 3;
+    color: $field-border-color;
+    height: $unit * 1.5;
+  }
+
+  .c-input {
+    border-radius: $radius;
+    border-color: $border-color;
+    min-width: 200px;
+
+    &:focus {
+      outline: none;
+      box-shadow: $field-focus-box-shadow;
+    }
+
+    .l-acorn__aside & {
+      min-width: 100%;
+    }
+  }
+}
+
+.c-search-panel {
+  display: flex;
+  gap: $unit;
+  @include screen-size(m) {
+    gap: $unit * 1.5;
+  }
+
+  .c-labelled-checkbox {
+    display: flex;
+    gap: calc(#{$unit}/ 2);
+    align-items: center;
+  }
+}

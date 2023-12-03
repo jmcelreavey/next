@@ -1,0 +1,46 @@
+.ac-cognito {
+  .c-form {
+    .c-input {
+      @extend .\+fill;
+    }
+  }
+
+  .c-form__actions {
+    .c-button {
+      @extend .\+long;
+    }
+  }
+
+  .c-button[data-label="cancel"] {
+    @extend .\+ghost;
+  }
+}
+
+.ac-cognito-signin-form {
+  .c-button[data-label="forgot-password"] {
+    --button-adj-active: #{$button-text-adjust-active};
+    --button-adj-hover: none;
+    --button-shadow: #{$shadow-reset};
+    background-color: transparent;
+    color: var(--button-bg);
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.ac-cognito-confirm-user {
+  .ac-cognito-confirm-user__resend {
+    @extend .u-marg-top;
+  }
+}
+
+div[data-label="password-policy"] {
+  @extend .c-alert, .\+align-start, .u-marg-bottom;
+  font-size: 0.9em;
+}
+
+ul[data-label="password-policy-list"] {
+  @extend .u-bullet-list;
+}

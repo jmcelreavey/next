@@ -1,0 +1,17 @@
+.ac-content {
+  --ac-content-bg-color: var(--color-site);
+  --ac-content-padding: var(--unit);
+  --ac-content-max-width: auto;
+
+  background-color: var(--ac-content-bg-color);
+  padding: var(--ac-content-padding);
+  max-width: var(--ac-content-max-width);
+  margin-inline-end: auto;
+  margin-inline-start: auto;
+  width: 100%;
+
+  &.\+full-width {
+    --ac-content-max-width: 100%;
+    --ac-content-padding: 0;
+  }
+}

@@ -1,0 +1,25 @@
+.c-alert {
+  border-radius: $radius;
+  @include screen-size(m-) {
+    @include padding($unit * 0.125 $unit * 0.5);
+  }
+  @media screen and (max-height: $screen-size-lh) {
+    @include padding($unit * 0.125 n);
+  }
+  &.\+neg {
+    background-color: var(--color-neg-shade);
+    color: var(--color-neg);
+  }
+  &.\+pos {
+    background-color: var(--color-pos-shade);
+    color: var(--color-pos);
+  }
+  &.\+warn {
+    background-color: var(--color-warn-shade);
+    color: var(--color-warn);
+  }
+
+  .c-icon {
+    flex-shrink: 0;
+  }
+}

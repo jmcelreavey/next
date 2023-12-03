@@ -1,0 +1,7 @@
+.cc-feedback {
+  border-radius: $button-radius;
+
+  &.\+in-page {
+    background-color: var();
+  }
+}

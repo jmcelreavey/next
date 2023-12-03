@@ -1,0 +1,129 @@
+# CognitoAuthentication.stories
+
+import { Canvas, Meta } from "@storybook/addon-docs";
+
+## Cognito Authentication
+
+Cognito is an AWS service that provides credential storage and authentication. It supports many features including federation with other credential providers and is a great way to offload the task of handling user authentication securely.
+
+AWS provides a React UI for Cognito in their Amplify package. As modern authentication flows can be quite complicated with multiple different challenges during the sign in process, you might wonder why we have rolled our own UI. The reason is simple - the Amplify package provided some styling and language limitations.
+
+This package provides form components for all of the different stages of the sign in process including forgot password and force set password after first login.
+
+The form components are only concerned with presentation and all behaviours and data are passed via props. However in normal use this is all handled for you though the use of the `useCognitoJourney` hook and the `CognitoJourney` component.
+
+Finally this package allows all of this to be easily connected with the back end partner found in `@gcdtech/acorn-authentication-cognito-nest` to support connecting Cognito logins with Acorn authentication in a simple way.
+
+### The form components
+
+The following components are available to use in building your own login journeys or in isolation:
+
+* [CognitoSignInForm]()
+* [CognitoSignUpForm]()
+* [CognitoChangePasswordForm]()
+* [CognitoForceSetPasswordForm]()
+* [CognitoResetPasswordForm]()
+* [CognitoConfirmPasswordForm]()
+* [CognitoSetupMfaForm]()
+* [CognitoVerifyMfaForm]()
+
+You can use each of these components independantly to build highly customised flows. In pratice however each of these forms are closely related and the Cognito sign in or sign up experiences often require the user to complete multiple steps to complete a journey.
+
+### The Journey hook and component
+
+Modern authentication and sign up involves a flow between several steps.
+
+* The user must be able to recover a forgotten password
+* They might be required to set a custom password if they received a random password by way of invitation
+* They might be required to confirm a new account by entering a validation code
+* They might be challenged to enter a one time password
+
+Handling the state transitions is complex and so connecting your own forms together would be time consuming.
+
+This package provides the `useCognitoJourney` hook and `CognitoJourney` component that work together to present the correct steps at the correct time.
+
+Their combined goal is to guide the user through all the relevant steps and ultimately call a callback once the user is logged in.
+
+This hook on its own can power Cognito-based authentication flows and its result is designed to be passed to the `CognitoJourney` component.
+
+### The `CognitoContext` component
+
+The `useCognitoJourney` hook needs to be used by components that are inside the `CognitoContext`. This provides the hook with the correct Cognito user pool settings which allows more than one Cognito user pool to be supported in the same project.
+
+```tsx
+<CognitoContext.Provider
+  value={{
+    region: process.env.REACT_APP_COGNITO_REGION ?? "",
+    userPoolId: process.env.REACT_APP_COGNITO_USER_POOL_ID ?? "",
+    userPoolWebClientId: process.env.REACT_APP_COGNITO_USER_POOL_CLIENT_ID ?? "",
+  }}
+>
+  {/* children here */}
+</CognitoContext.Provider>
+```
+
+### The `CognitoJourney` component
+
+This component uses the result of the journey hook and presents the correct interface component at the appropriate time.
+
+#### Sign In Flow
+
+The default mode of the hook is to start with the sign in form. Simply spread the hook output as the props of the `CognitoJourney` component.
+
+```tsx
+const journeyBehaviours = useCognitoJourney();
+<CognitoJourney {...journeyBehaviours}} />
+```
+
+If you want to respond to key events pass those as callbacks in the hook options:
+
+```tsx
+const journeyBehaviours = useCognitoJourney({
+  onSignIn: useCallback(() => {
+    // ....
+  }, []),
+});
+<CognitoJourney {...journeyBehaviours} />;
+```
+
+This component uses the 'stock' form components however those are customisable using the `components` prop:
+
+```tsx
+const journeyBehaviours = useCognitoJourney();
+<CognitoJourney
+  {...journeyBehaviours}
+  components={{
+    [CognitoJourneyStep.ResetPassword]: MyCognitoResetPasswordForm,
+  }}
+/>;
+```
+
+#### Sign Up flow
+
+Sign up is very simple, just set the starting step to be SignUp:
+
+```tsx
+const journeyBehaviours = useCognitoJourney({
+  startingStep: CognitoJourneyStep.SignUp,
+  onSignUp: useCallback(() => {
+    // ....
+  }, []),
+});
+<CognitoJourney {...journeyBehaviours} />;
+```
+
+### Connecting with Acorn
+
+To use the component to connect with Acorn authentication you simply need to use the `useAcornCognitoJourney` hook as a replacement for `useCognitoJourney`. This simply hooks into the default callbacks to take the Cognito provided authentication token and post that to the Acorn authentication endpoint for verification. This then interacts with the Acorn react authentication context and completes the login.
+
+To use the hook you need to only provide the name of the pool as configured in your API. Note, this is **not** the AWS Cognito pool ID or pool name, but rather the name of the pool as configured in your Nest API module. e.g. "staff"
+
+```tsx
+export const Login = () => {
+  const cognitoBehaviours = useAcornCognitoJourney({
+    pool: "staff",
+  });
+
+  return <CognitoJourney {...cognitoBehaviours} />;
+};
+```

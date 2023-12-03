@@ -1,0 +1,141 @@
+@use "sass:math";
+
+.c-field {
+  .\+inline.\+grid &.\+fill {
+    justify-items: stretch;
+    justify-content: stretch;
+  }
+
+  .\+inline.\+grid & {
+    //grid-template-columns: [ls is fs] auto [le ie fe];
+    //justify-content: stretch;
+    grid-template-columns: [ls] auto [le is fs] 1fr [ie fe];
+    align-items: center;
+    justify-content: stretch;
+    justify-items: flex-start;
+    @include margin(calc($unit/2) n n n);
+
+    //@include screen-size(m) {
+    //    grid-template-columns: [ls] auto [le is fs] 1fr [ie fe];
+    //    align-items: center;
+    //
+    //    .c-label {
+    //        @include var(width, inline-label-width);
+    //        align-items: flex-start;
+    //    }
+    //}
+
+    //@include screen-size(m-) {
+    //    .c-label {
+    //        width: auto;
+    //    }
+    //}
+
+    .c-inputs {
+      display: flex;
+      gap: $unit;
+      > .c-input {
+        flex: 1;
+      }
+    }
+  }
+
+  &.\+small {
+    max-width: $unit * 8;
+  }
+
+  //when we don't want forms to stack on mobile
+  //.\+inline.\+grid.\+no-stack-mob &{
+  //    grid-template-columns: [ls] auto [le is fs] 1fr [ie fe];
+  //    align-items: center;
+  //    .c-label {
+  //        @include var(width, inline-label-width);
+  //        align-items: flex-start;
+  //    }
+  //}
+
+  &.\+auto {
+    --inline-label-width: 100%;
+  }
+
+  .c-field__help-text {
+    margin-left: 0 !important;
+    @include font-size(font-size(milli));
+  }
+
+  .\+stacked & {
+    display: grid;
+    grid-template-columns: [ls is fs] auto [le ie fe] !important;
+    .c-label {
+      width: 100% !important;
+    }
+  }
+
+  .c-label {
+    grid-column: ls / le;
+  }
+  .c-inputs,
+  .c-input,
+  .cc-address-finder {
+    grid-column: is / ie;
+  }
+  .c-field__feedback {
+    grid-column: fs / fe;
+  }
+  .c-field__help-text {
+    grid-column: fs / fe;
+  }
+
+  .cc-address-finder {
+    position: relative;
+    width: 100%;
+  }
+
+  + .c-form {
+    @include margin(math.div($margin, 2) n n n);
+  }
+}
+
+.c-field__thumbnail {
+  width: 100%;
+  @include screen-size(s) {
+    width: $unit * 10;
+  }
+}
+
+//Form for collection request items (This will need refactored at some point)
+.c-field__help-text {
+  color: var(--color-text-alt);
+  @include margin(calc(#{$unit} / 6) n n n);
+  .c-form.\+fill & {
+    @include margin(0 n n n);
+    @include padding(calc(#{$unit} / 6) n n n);
+  }
+}
+
+.c-field-group {
+  @include margin(calc(#{$unit} / 2) n n n);
+  //Adding this to fix alignment issues in select boxes
+  align-items: flex-start !important;
+
+  &:first-child {
+    margin-top: 0;
+  }
+
+  &.\+composite-input {
+    margin-top: 0;
+  }
+}
+
+.c-field-group-grid {
+  .c-field-group {
+    .c-label {
+      display: none;
+    }
+  }
+  .c-field-group:first-child {
+    .c-label {
+      display: flex;
+    }
+  }
+}

@@ -1,0 +1,124 @@
+@use "sass:math";
+
+.ac-title {
+  --ac-title-icon-space: 0.5em;
+  --ac-title-color: var(--color-text);
+  --ac-title-icon-color: var(--color-text);
+  --ac-title-font: var(--heading-font-family);
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+
+  .c-heading {
+    font-family: var(--ac-title-font);
+    font-display: swap;
+    color: var(--ac-title-color);
+    display: inline-flex;
+    align-items: center;
+    margin: 0;
+
+    &.\+h1 {
+      line-height: 1.1em;
+      font-size: 2.5em;
+    }
+
+    &.\+h2 {
+      font-weight: bold;
+      font-size: 1.75em;
+    }
+    &.\+h3 {
+      font-size: 1.25em;
+      font-weight: bold;
+    }
+    &.\+h4 {
+      font-size: 1em;
+      font-weight: 700;
+    }
+  }
+
+  &:not(.u-gap):has(.c-icon) {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .c-icon {
+    color: var(--ac-title-icon-color);
+    margin-right: calc(var(--ac-title-icon-space) * 0.5);
+  }
+
+  .c-icon:last-child {
+    font-size: 1em;
+  }
+
+  &.\+y {
+    flex-direction: column;
+  }
+
+  // If the title appears in an aside add some
+  // padding to either side
+  > .ac-sidebar.\+aside & {
+    padding: 0 var(--unit);
+  }
+
+  .ac-dialog & {
+    padding: 0;
+  }
+
+  &:has(.\+h1) {
+    .c-icon {
+      @extend %h1 !optional;
+      font-size: 2.5em;
+    }
+  }
+  &:has(.\+h2) {
+    .c-icon {
+      @extend %h2 !optional;
+      font-size: 1.75em;
+    }
+  }
+  &:has(.\+h3) {
+    .c-icon {
+      @extend %h3 !optional;
+      font-size: 1.25em;
+    }
+  }
+  &:has(.\+h4) {
+    .c-icon {
+      @extend %h4 !optional;
+      font-size: 1em;
+    }
+  }
+  &:has(.\+h5) {
+    .c-icon {
+      @extend %h5 !optional;
+    }
+  }
+  &:has(.\+h6) {
+    .c-icon {
+      @extend %h6 !optional;
+    }
+  }
+
+  &.\+icon-h1 {
+    align-items: center;
+    .c-icon {
+      font-size: 2.5em;
+    }
+  }
+  &.\+icon-h2 {
+    .c-icon {
+      font-size: 1.75em;
+    }
+  }
+  &.\+icon-h3 {
+    .c-icon {
+      font-size: 1.25em;
+    }
+  }
+  &.\+icon-h4 {
+    .c-icon {
+      font-size: 1em;
+    }
+  }
+}

@@ -1,0 +1,57 @@
+@use "sass:math";
+
+.l-autofill {
+  display: grid;
+  grid-gap: $grid-column-gap;
+  grid-template-columns: repeat(auto-fill, minmax($block, 1fr));
+
+  @each $grid-mq in $grid-mqs {
+    &.\+half {
+      @include media-query($grid-mq) {
+        grid-template-columns: repeat(auto-fill, minmax($block * 0.5, 1fr));
+      }
+    }
+
+    &.\+xs {
+      @include media-query($grid-mq) {
+        grid-template-columns: repeat(
+          auto-fill,
+          minmax(math.div($block, power($block-ratio, 2)), 1fr)
+        );
+      }
+    }
+
+    &.\+small {
+      @include media-query($grid-mq) {
+        grid-template-columns: repeat(
+          auto-fill,
+          minmax(math.div($block, power($block-ratio, 1)), 1fr)
+        );
+      }
+    }
+
+    &.\+block {
+      @include media-query($grid-mq) {
+        grid-template-columns: repeat(auto-fill, minmax($block, 1fr));
+      }
+    }
+
+    &.\+large {
+      @include media-query($grid-mq) {
+        grid-template-columns: repeat(auto-fill, minmax($block * power($block-ratio, 1), 1fr));
+      }
+    }
+
+    &.\+xl {
+      @include media-query($grid-mq) {
+        grid-template-columns: repeat(auto-fill, minmax($block * power($block-ratio, 2), 1fr));
+      }
+    }
+
+    &.\+double {
+      @include media-query($grid-mq) {
+        grid-template-columns: repeat(auto-fill, minmax($block * 2, 1fr));
+      }
+    }
+  }
+}

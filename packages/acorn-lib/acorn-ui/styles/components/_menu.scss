@@ -1,0 +1,79 @@
+.c-menu {
+  background-color: white;
+  box-shadow: var(--shadow-light);
+  border-radius: calc(var(--radius) / 2);
+  min-width: calc(var(--block) / 1.5);
+  overflow: hidden;
+  z-index: zindex(top);
+
+  menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  &:hover {
+    animation: raise-card 0.2s both;
+  }
+
+  .c-button {
+    //These are overriding some button styles from c-button that we don't want for the menu buttons
+    background-color: transparent;
+
+    //Styling menu buttons
+    align-items: center;
+    color: var(--color-text);
+    display: flex;
+    text-align: start;
+    width: 100%;
+    font-weight: normal;
+    justify-content: flex-start;
+
+    &:hover {
+      background-color: var(--color-shade-light);
+    }
+
+    border-top: $border-width solid var(--border-color);
+    border-radius: 0;
+    color: var(--color-text);
+    display: flex;
+    gap: calc(#{var(--gap)} / 2);
+    // padding: var(--gap);
+    width: 100%;
+    text-align: start;
+
+    &:disabled {
+      color: var(--color-grey);
+      &:hover {
+        background-color: white;
+      }
+    }
+
+    &:hover {
+      background-color: var(--color-shade-light);
+    }
+
+    &:active {
+      background-color: hsl(var(--color-3-hsl) / calc(var(--shade) * 2));
+    }
+
+    &.\+neg {
+      color: var(--color-neg);
+    }
+  }
+
+  li:first-child {
+    .c-button {
+      border-top: none;
+    }
+  }
+}
+
+@keyframes raise-card {
+  from {
+    box-shadow: var(--shadow-light);
+  }
+  to {
+    box-shadow: var(--shadow);
+  }
+}

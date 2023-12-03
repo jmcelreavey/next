@@ -1,0 +1,175 @@
+:root {
+  --timeline-icon-box: calc(var(--unit) * 1.5);
+  --timeline-icon-color-bg: var(--color-accent);
+  --timeline-icon-color-fg: var(--color-site);
+  --timeline-item-space: calc(var(--unit) * 1.5);
+  --timeline-item-gap: var(--unit);
+  --timeline-icon-size: 0.6em;
+
+  --timeline-line-color: var(--color-shade);
+  --timeline-line-width: 1px;
+  --timeline-line-opacity: 1;
+  --timeline-line-gap: calc(var(--timeline-line-width) * 4);
+
+  --timeline-content-gap: calc(var(--unit) / 4);
+  --timeline-content-weight: bold;
+
+  --timeline-more-weight: normal;
+
+  --timeline-note-color-bg: var(--color-shade-x05);
+  --timeline-note-pad: calc(var(--unit) / 2);
+  --timeline-note-radius: var(--radius);
+  --timeline-note-weight: normal;
+
+  --timeline-credit-gap: calc(var(--gap) / 2);
+  --timeline-credit-size: #{font-size(milli)};
+
+  --timeline-menu-width: calc(var(--unit) * 2);
+}
+
+.c-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: var(--timeline-item-space);
+}
+
+.c-timeline-item {
+  display: flex;
+  gap: var(--timeline-item-gap);
+  position: relative;
+
+  // Timeline line construction
+  .c-timeline:has(.c-timeline-item__icon) &:has(+ .c-timeline-item):before {
+    content: "";
+    background-color: var(--timeline-line-color);
+    width: var(--timeline-line-width);
+    inset-block-end: calc((var(--timeline-item-space) + (var(--timeline-icon-box) / 2)) * -1);
+    inset-block-start: calc(var(--timeline-icon-box) / 2);
+    inset-inline-start: calc((var(--timeline-icon-box) / 2) - calc(var(--timeline-line-width) / 2));
+    opacity: var(--timeline-line-opacity);
+    position: absolute;
+    z-index: 0;
+  }
+}
+
+.c-timeline-item__icon {
+  align-items: center;
+  background-color: var(--timeline-icon-color-bg);
+  border-radius: var(--timeline-icon-box);
+  color: var(--timeline-icon-color-fg);
+  display: flex;
+  flex-shrink: 0;
+  font-size: var(--timeline-icon-box);
+  height: var(--timeline-icon-box);
+  justify-content: center;
+  position: relative;
+  width: var(--timeline-icon-box);
+  &:has(input[type="checkbox"]),
+  &.\+blank {
+    background-color: transparent;
+  }
+  &.\+blank:not(:has(input[type="checkbox"])) {
+    &:before {
+      background-color: var(--timeline-icon-color-bg);
+      border-radius: var(--timeline-icon-box);
+      content: "";
+      font-size: 0;
+      height: calc(var(--timeline-icon-box) / 2);
+      width: calc(var(--timeline-icon-box) / 2);
+    }
+  }
+
+  .c-icon {
+    font-size: var(--timeline-icon-size);
+  }
+}
+
+.c-timeline-item__content {
+  width: calc(100% - var(--timeline-icon-box) - var(--timeline-content-gap));
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: var(--timeline-content-gap);
+
+  .c-timeline:not(.\+no-offset) & {
+    margin-top: calc((var(--timeline-icon-box) - (var(--unit) * #{$line-height-ratio})) / 2);
+  }
+}
+
+.c-timeline-item__event {
+  display: flex;
+  justify-content: space-between;
+  font-weight: var(--timeline-content-weight);
+  width: 100%;
+  // Ensure that context menus inside the event open in the correct place
+  align-items: flex-start;
+  &.\+note {
+    background-color: var(--timeline-note-color-bg);
+    border-radius: var(--timeline-note-radius);
+    font-weight: var(--timeline-note-weight);
+    padding: var(--timeline-note-pad);
+    &:first-child {
+      margin-block-start: calc(var(--timeline-note-pad) * -1);
+    }
+  }
+}
+
+.c-timeline-item__menu {
+  line-height: inherit;
+  min-height: 0;
+  vertical-align: baseline;
+  padding: 0;
+  width: var(--timeline-menu-width);
+}
+
+.c-timeline-item__more {
+  font-weight: var(--timeline-more-weight);
+}
+
+.c-timeline-credit {
+  display: flex;
+  font-size: var(--timeline-credit-size);
+  gap: var(--timeline-credit-gap);
+}
+
+// TODO Remove?
+
+.c-timeline__header {
+  display: block;
+  margin-bottom: $padding;
+
+  .c-timeline__header-title {
+    font-size: font-size(gamma);
+    display: block;
+
+    @media (max-width: 650px) {
+      padding-bottom: $padding;
+    }
+  }
+
+  @media (min-width: 650px) {
+    display: inline-flex;
+    justify-content: space-between;
+    border-bottom: var(--border-color) solid $border-width;
+    padding-bottom: $padding;
+    width: 100%;
+  }
+
+  .search-filter-container {
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: wrap;
+
+    .c-search {
+      .c-input {
+        margin-right: $unit;
+        padding-left: $unit;
+        border-color: var(--border-color-light) !important;
+      }
+    }
+
+    .c-icon {
+      color: $lightGrey;
+    }
+  }
+}

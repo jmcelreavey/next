@@ -1,0 +1,89 @@
+import { Canvas } from "@storybook/addon-docs";
+import { Button, Buttons, ButtonBar, slowly } from "morse-react";
+
+# Button Variations
+
+Buttons serve as important cues for users to understand what actions are possible and which
+are the intended 'happy path'. It is vital therefore to be consistent in how buttons are titled,
+positioned and styled.
+
+<Canvas>
+  <table className="c-table +dont-adjust-button-heights +head-border +lined +valign +middle">
+    <thead>
+      <tr>
+        <th>Button</th>
+        <th>CSS Class Modifier</th>
+        <th>When to use</th>
+        <th>Example</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <Button className="+primary">Primary Button</Button>
+        </td>
+        <td>
+          <code>
+            <b>+primary</b>
+          </code>
+        </td>
+        <td>The main action button. Generally one per screen</td>
+        <td>Save, Create, Add, Continue</td>
+      </tr>
+      <tr>
+        <td>
+          <Button className="+secondary">Secondary Button</Button>
+        </td>
+        <td>
+          <code>
+            <b>+secondary</b>
+          </code>
+        </td>
+        <td>
+          Less emphasis than the primary button but still important. Only to be used alongside a
+          primary button. Can have multiple of these per screen.
+        </td>
+        <td>Cancel, Download, Edit</td>
+      </tr>
+      <tr>
+        <td>
+          <Button className="+destructive">Desctructive Button</Button>
+        </td>
+        <td>
+          <code>
+            <b>+destructive</b>
+          </code>
+        </td>
+        <td>Use for destructive actions where you want the user to really notice the button</td>
+        <td>Delete, Remove, Block</td>
+      </tr>
+      <tr>
+        <td>
+          <Button className="+toggle-ui">Toggle UI Button</Button>
+        </td>
+        <td>
+          <code>
+            <b>+toggle-ui</b>
+          </code>
+        </td>
+        <td>When you want to toggle a peice of the UI</td>
+        <td>Show, Hide, Filters</td>
+      </tr>
+      <tr>
+        <td>
+          <Button className="+subtle">Subtle Button</Button>
+        </td>
+        <td>
+          <code>
+            <b>+subtle</b>
+          </code>
+        </td>
+        <td>
+          The least important button style. Use when you don't want the button to specifically look
+          like a button or for navigation.
+        </td>
+        <td>Settings, More</td>
+      </tr>
+    </tbody>
+  </table>
+</Canvas>

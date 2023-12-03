@@ -1,0 +1,87 @@
+@use "sass:math";
+
+.cc-sidebar {
+  &.\+nav {
+    @include var(background-color, sidebar-bg-color);
+    @include var(color, sidebar-text-color);
+    @include var(width, sidebar-width);
+    border-right: 1px solid var(--border-color-light);
+    gap: $unit;
+    overflow: auto;
+
+    @include screen-size(m) {
+      gap: $unit * 2;
+    }
+
+    // Mobile Version
+    @include screen-size(m-) {
+      @include position(fixed, n 0 0 0);
+      display: none;
+      z-index: zindex(middle);
+      width: 100vw;
+      top: $touch-target + $padding;
+
+      .\+menu-open & {
+        display: block;
+      }
+    }
+  }
+
+  .cc-sidebar__nav {
+    overflow: hidden;
+  }
+
+  .cc-sidebar__bottom {
+    display: flex;
+    @include padding(math.div($padding, 2));
+    justify-content: flex-end;
+  }
+}
+
+.cc-sidebar {
+  @include var(width, filter-drawer-width);
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  height: 100%;
+}
+
+.cc-sidebar__header {
+  display: flex;
+  gap: var(--gap);
+  padding: var(--gap);
+  justify-content: space-between;
+}
+
+.cc-sidebar__content {
+  overflow: auto;
+}
+
+.cc-sidebar__footer {
+  padding: var(--gap);
+  box-shadow: var(--shadow-heavy);
+}
+
+.cc-sidebar-header__actions {
+  display: flex;
+  gap: calc(#{var(--gap)} / 2);
+  align-items: flex-start;
+}
+
+.cc-sidebar-header__kicker:has(.c-pill) {
+  margin-bottom: calc(#{var(--gap)} / 2);
+}
+
+.cc-sidebar-header__title {
+  @include font-size(font-size(beta));
+  font-family: $h2-font-family;
+  font-weight: bold;
+}
+
+.cc-sidebar-header__subtitle {
+  @include font-size(font-size(milli));
+}
+
+.cc-kicker {
+  @include font-size(font-size(milli));
+  color: var(--color-text-alt);
+}

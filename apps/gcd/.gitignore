@@ -1,0 +1,73 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# testing
+/coverage
+
+# database
+/prisma/db.sqlite
+/prisma/db.sqlite-journal
+
+# next.js
+/.next/
+/out/
+next-env.d.ts
+
+# production
+/build
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+.turbo
+
+# Obsidian 
+packages/obsidian/node_modules
+packages/obsidian/package-lock.json
+packages/obsidian/*.sql
+packages/obsidian/cucumber-messages.ndjson
+packages/obsidian/artefacts/*
+
+# Auto Generated PWA files
+**/public/sw.js
+**/public/workbox-*.js
+**/public/worker-*.js
+**/public/sw.js.map
+**/public/workbox-*.js.map
+**/public/worker-*.js.map
+
+# sst
+.open-next
+.sst
+.build
+cdk/resources/prisma/prisma
+
+# TSC build output
+/dist
+node_modules
+.next
+packages/deployment/cdk/resources/prisma/prisma
+package-lock.json

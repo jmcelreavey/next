@@ -1,0 +1,22 @@
+@use "sass:math";
+
+.c-dropdown__search-input.c-input.\+text,
+.c-dropdown__add-input.c-input.\+text {
+  line-height: math.div($input-height, 1.15);
+  min-height: math.div($input-height, 1.15);
+
+  &:focus {
+    box-shadow: inset 0 0 0 $field-border-width $blue;
+  }
+}
+
+.c-dropdown__alert {
+  background: white;
+  font-weight: $bold;
+  color: var(--color-text-alt);
+}
+
+.c-dropdown-settings {
+  display: none;
+  min-width: $unit * 12;
+}

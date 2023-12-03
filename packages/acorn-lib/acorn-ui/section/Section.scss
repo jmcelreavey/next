@@ -1,0 +1,97 @@
+.ac-section {
+  --ac-section-padding: var(--cushion);
+  --ac-section-bg-color: var(--color-site);
+  --ac-section-border-width: 1px;
+  --ac-section-border-color: var(--border-color);
+  --ac-section-border-radius: var(--border-radius);
+  --ac-section-margin: var(--cushion);
+
+  background-color: var(--ac-section-bg-color);
+  padding: var(--ac-section-padding);
+
+  .ac-sidebar.\+aside & {
+    --ac-section-bg-color: transparent;
+    --ac-section-padding: 0 var(--gap);
+
+    .ac-section {
+      --ac-section-padding: 0;
+
+      &.\+table-padding {
+        --ac-section-padding: 0.5em;
+
+        &:first-of-type {
+          --ac-section-padding: 0.5em 0.25em 0.5em 0.5em;
+        }
+        &:nth-of-type(2) {
+          --ac-section-padding: 0.5em 0.25em 0.5em 0.25em;
+        }
+        &:last-of-type {
+          --ac-section-padding: 0.5em 0.5em 0.5em 0.25em;
+        }
+      }
+    }
+  }
+
+  > * {
+    flex-basis: 1;
+    width: 100%;
+  }
+
+  // Remove the padding on nested sections
+  .ac-section {
+    --ac-section-padding: 0;
+  }
+
+  &.\+spaced {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap);
+  }
+
+  &.\+double-spaced {
+    flex-direction: column;
+    display: flex;
+    gap: calc(var(--gap) * 2);
+  }
+
+  &.\+no-background-color {
+    --ac-section-bg-color: none;
+  }
+
+  &.\+color-1 {
+    --ac-section-bg-color: var(--color-1);
+  }
+
+  &.\+color-2 {
+    --ac-section-bg-color: var(--color-2);
+  }
+
+  &.\+color-shade {
+    --ac-section-bg-color: var(--color-shade-light);
+  }
+
+  &.\+scrollable {
+    overflow: auto;
+  }
+
+  &.\+border-top {
+    border-top: var(--ac-section-border-width) solid
+      var(--ac-section-border-color);
+
+    .ac-section & {
+      --ac-section-padding: var(--gap) 0;
+    }
+  }
+
+  &.\+block-padding-large {
+    padding-block: calc(var(--ac-section-margin) * 3);
+  }
+
+  &.\+rounded {
+    border-radius: var(--ac-section-border-radius);
+  }
+
+  &.\+no-padding {
+    --ac-section-padding: 0;
+  }
+}

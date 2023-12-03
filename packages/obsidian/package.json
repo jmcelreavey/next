@@ -1,0 +1,69 @@
+{
+  "name": "obsidian",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "lerna run build",
+    "clean:all": "rm -rf ./node_modules && yarn clean:deps",
+    "clean:deps": "rm -rf ./framework/packages/obsidian/node_modules",
+    "test:all:record": "cypress run --spec \"**/*.feature\" npx cypress run --record --key REPLACE_WITH_PROJECT_SPECIFIC_KEY",
+    "test:all": "cypress run --config video=false",
+    "test:passing": "cypress run --config video=false --env tags=@passing",
+    "test:non-defect": "npx cypress-tags run -e TAGS='not @defect'",
+    "run:debug": "DEBUG=cypress:*,cypress-configuration,cypress open\n",
+    "lint": "eslint \"**/*.ts\"",
+    "lint-gherkin": "gherkin-lint",
+    "add": "node ./cypress/support/add-test.js"
+  },
+  "resolutions": {
+    "graceful-fs": "4.2.9"
+  },
+  "keywords": [
+    "cypress",
+    "cucumber",
+    "testing"
+  ],
+  "author": "GCD Tech",
+  "dependencies": {
+    "@badeball/cypress-cucumber-preprocessor": "15.1.0",
+    "@bahmutov/cypress-esbuild-preprocessor": "2.1.2",
+    "@gcdtech/obsidian": "^1.4.1",
+    "chalk": "^4.1.0",
+    "cucumber-html-reporter": "^5.5.0",
+    "cypress-file-upload": "^5.0.8",
+    "cypress-mailosaur": "^2.7.0",
+    "cypress-tags": "^0.3.0",
+    "esbuild": "^0.14.25",
+    "fs-extra": "^10.0.0",
+    "lerna": "^5.1.8",
+    "mysql2": "^2.3.3",
+    "path": "^0.12.7"
+  },
+  "cypress-cucumber-preprocessor": {
+    "stepDefinitions": [
+      "cypress/step-definitions/[filepath]*.{js,ts}",
+      "cypress/step-definitions/[filepart]/**.common.{js,ts}",
+      "cypress/step-definitions/common/*.{js,ts}",
+      "cypress/step-definitions/**/[filepart].{js,ts}"
+    ],
+    "json": {
+      "enabled": true,
+      "formatter": "json",
+      "output": "artefacts/the-report.json"
+    }
+  },
+  "devDependencies": {
+    "@babel/eslint-parser": "^7.15.7",
+    "@types/jquery": "^3.5.14",
+    "cypress": "12.3.0",
+    "eslint": "^7.32.0",
+    "prettier": "2.8.0",
+    "eslint-plugin-chai-friendly": "^0.7.2",
+    "eslint-plugin-cucumber": "^1.4.0",
+    "eslint-plugin-cypress": "^2.12.1",
+    "gherkin-lint": "^4.2.2",
+    "multiple-cucumber-html-reporter": "^1.18.3",
+    "typescript": "^4.4.2"
+  }
+}

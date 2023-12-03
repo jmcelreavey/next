@@ -1,0 +1,24 @@
+.l-acorn-page-header {
+  display: flex;
+  flex-direction: column;
+  gap: $unit;
+
+  @include screen-size(m) {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: none;
+  }
+}
+
+.l-acorn-page-header-banner {
+  margin-top: $unit;
+  @media screen and (max-height: $screen-size-lh) {
+    margin-top: $unit * 0.5;
+  }
+}
+
+.l-acorn-page-header__secondary {
+  &:empty {
+    display: none;
+  }
+}

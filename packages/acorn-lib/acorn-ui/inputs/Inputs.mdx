@@ -1,0 +1,191 @@
+import { Meta, Title, Canvas } from "@storybook/addon-docs";
+import { TextBoxInput } from "./TextBox/TextBoxInput";
+import { TextAreaInput } from "./TextArea/TextAreaInput";
+import { Checkbox } from "./Boolean/Checkbox";
+import { CheckboxInput } from "./Boolean/CheckboxInput";
+import { Select } from "./Select/Select";
+import { SelectInput } from "./Select/SelectInput";
+import { SyntheticSelectInput } from "./Select/SyntheticSelectInput";
+import { ListBox } from "./ListBox/ListBox";
+import { ListBoxInput } from "./ListBox/ListBoxInput";
+import { Search } from "./Search/Search";
+import { SearchInput } from "./Search/SearchInput";
+
+<Title>Form inputs in Acorn</Title>
+
+Input components are any type of component that can take a value and present
+a user interface to allow the user to modify that value.
+
+While this obviously covers custom inputs Acorn also provides a suite of inputs
+based upon native browser inputs. We do this for two reasons:
+
+1. To ensure inputs support theming at the Morse, Acorn and Project level
+2. To ensure inputs are noramlised in their behaviour to make them easier to
+   swap, one for another.
+
+Inputs designed for regular user end in the suffic 'Input' and we encourage this
+naming in projects too.
+
+All input components should accept the generic `SyntheticInputProps` which
+provides concrete typing around the value of the input and provides a
+`onValueChange` event prop. This ensures any native `onChange` prop is not
+shadowed by customised behaviours.
+
+> It is recommended to use Acorn inputs, and the onValueChange prop where
+> possible. Adapters should be made to support form libraries.
+
+## Native input wrappers
+
+In some cases to acheive normalised support for `SyntheticInputProps` the
+behaviour of an input must be modified substantially from the native type.
+
+For example, the `type=checkbox` HTML input behaves quite differently from
+other inputs. Its value prop sets the 'checked value'. When a form is submitted
+if the checkbox is checked, this value will be emitted as the value of the
+input, and if not checked the form omits this property.
+
+When noramlised however we want this input to behave like the others, namely
+that the value prop receives the current value of the input and the input
+should be capable of representing both the checked and the unchecked states
+as alternative values.
+
+In cases like this you should expect to find a simpler component that only
+adds theming support to allow you to tackle problems that require a more
+native friendly approach. In the case of our checkbox example you can find
+both a Checkbox component (native, themed) and a CheckboxInput (normalised,
+synthetic).
+
+## Input Library
+
+### Text Inputs
+
+#### TextBox
+
+<TextBoxInput />
+
+#### TextArea
+
+<TextAreaInput rows={6} cols={50} />
+
+### Boolean Inputs
+
+#### Checkbox
+
+The Checkbox input wraps a standard checkbox input and so unlike other inputs the value
+prop refers to the value the input will present to form once checked.
+
+<Checkbox />
+
+#### CheckboxInput
+
+CheckboxInput is a normalised and synthetic wrapper around Checkbox. It is most commonly
+used to capture a simple boolean value, but both the checked and unchecked values
+can be overridden with props.
+
+<CheckboxInput />
+
+### Selects
+
+#### Select
+
+Select is a simple themed version of a browser input.
+
+<Select>
+  <option>Option A</option>
+  <option>Option B</option>
+  <option>Option C</option>
+</Select>
+
+#### SelectInput
+
+SelectInput is a native select that uses the options prop to provide the source of its
+options to render.
+
+<SelectInput options={() => ["Option A", "Option B", "Option C"]} />
+
+The `options` prop is a powerful prop that can provide an array of values, an array of
+OptionItem objects or a promise to return either of these.
+
+#### SyntheticSelect
+
+SyntheticSelect is a reproduction of a drop down select created using other native browser
+elements. It allows for more consistent and sophisticated features such as results filtering
+and custom rendering of options. It may not be as accessible or perform as well on touch
+devices.
+
+Unlike `Select` this variant is a controlled input and cannot track its own value. In this
+demo therefore selecting a value appears to do nothing as you must attach both the value
+and onValueChange props.
+
+<SyntheticSelectInput options={() => ["Option A", "Option B", "Option C"]} />
+
+#### ListBox
+
+ListBox is a presentation component that allows you to show a scrollable list of options
+for a user to pick from.
+
+<Canvas>
+  <ListBox>
+    <ListBox.Body>
+      <ListBox.Item>Option A</ListBox.Item>
+      <ListBox.Item>Option B</ListBox.Item>
+      <ListBox.Item>Option C</ListBox.Item>
+    </ListBox.Body>
+  </ListBox>
+</Canvas>
+
+#### ListBoxInput
+
+ListBoxInput turns a ListBox into a controlled synthetic input with the expected
+`value` and `onValueChange` props.
+
+<Canvas>
+  <ListBoxInput options={() => ["Option A", "Option B", "Option C"]} />
+</Canvas>
+
+### Search Inputs
+
+Search inputs assume that no results are meaningful until the user has searched using a
+text phrase.
+
+#### Search
+
+The `Search` component simple presents a text input wrapped in faux input container that
+presents a search icon beside the input. It is not an input itself but simply wraps a
+standard native text input.
+
+<Search />
+
+#### SearchInput
+
+The `SearchInput` component is a `SyntheticSelectInput` that renders the trigger as a
+searchable input. This input works in just the same way as the `SelectInput` but the
+results are searchable. Note that in most cases a `SearchInput` will render complex
+children for each item to better represent the search results. For that reason the
+assumption has been made that the items in the search are also complex objects and
+so there is no default filtering provided. Instead the `options` prop should always
+be a callback function that can take the `phrase` string argument to return relevant
+results.
+
+<SearchInput
+  options={() => {
+    const options = ["Option A", "Option B", "Option C"];
+    return options.filter((item) => item.includes(phrase));
+  }}
+/>
+
+### Inputs as a wider technique
+
+Thinking with an input mindset can make some problems much easier to solve. For example
+if you need to show multiple text inputs to capture a single value you would be best
+to create an input component which wraps them. The internal inputs serve the purpose
+of computing the value of the main input.
+
+A great example of this is the `AddressInput`. It contains multiple text boxes but
+it presents a single value as an Address object. This means the input can be easily
+added to any form without knowing the inputs contained within it. Setting the value
+to null or undefined can also be a nice way to put the complex input into a default
+state.
+
+Inputs that do use native browser inputs should have all of their props available
+include `onChange`. This allows you to interact with DOM level events.

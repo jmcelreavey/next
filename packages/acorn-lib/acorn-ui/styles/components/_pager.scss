@@ -1,0 +1,29 @@
+.c-pager {
+}
+
+.c-pager__item {
+  border-radius: $radius;
+
+  &.\+next,
+  &.\+prev {
+    font-size: font-size(gamma);
+    line-height: 1.6em;
+  }
+
+  &.\+first {
+  }
+
+  &.\+last {
+  }
+
+  &.\+disabled {
+    color: $lighter;
+    @include var(color, color-text-alt);
+
+    &:hover {
+      cursor: text;
+      background: transparent;
+      @include var(color, color-text-alt);
+    }
+  }
+}

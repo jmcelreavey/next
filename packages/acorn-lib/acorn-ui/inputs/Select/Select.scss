@@ -1,0 +1,21 @@
+// Had to copy this - this was available as a root class in the old Acorn? CC Paul/Greg
+.\+focus {
+  box-shadow: var(--field-border), var(--field-shadow), var(--field-selected);
+}
+
+.ac-select {
+  @extend .c-select !optional;
+
+  &:has(input:focus) {
+    @extend .\+focus;
+    .c-input {
+      box-shadow: none;
+    }
+  }
+
+  input[type="text"] {
+    :focus {
+      outline: none;
+    }
+  }
+}

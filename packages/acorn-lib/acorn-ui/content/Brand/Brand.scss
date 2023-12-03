@@ -1,0 +1,24 @@
+.ac-brand {
+  --ac-brand-bg: var(--color-1);
+  --ac-brand-padding: 0.5em;
+  --ac-brand-height: calc(var(--touch-target) - var(--ac-brand-padding));
+
+  display: inline-flex;
+  gap: calc(var(--gap) / 2);
+  align-items: center;
+
+  .ac-app & {
+    background-color: var(--ac-brand-bg);
+    padding: 0 var(--ac-brand-padding);
+    flex-shrink: 0;
+    flex-grow: 0;
+
+    a {
+      display: flex;
+    }
+  }
+
+  img {
+    height: calc(var(--ac-brand-height) - 0.5em);
+  }
+}

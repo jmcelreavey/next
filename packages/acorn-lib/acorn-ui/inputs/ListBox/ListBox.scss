@@ -1,0 +1,113 @@
+.ac-listbox {
+  --ac-listbox-focus-shadow: var(--field-focus-box-shadow);
+  --ac-listbox-shadow: var(--field-border);
+
+  --ac-listbox-head-padding: calc(var(--gap) / 2) var(--gap);
+  --ac-listbox-head-border: var(--dropdown-group-header-border-bottom);
+
+  --ac-listbox-foot-padding: calc(var(--gap) / 2) var(--gap);
+  --ac-listbox-foot-border: var(--dropdown-group-header-border-top);
+
+  --ac-listbox-item-height: var(--dropdown-item-height);
+  --ac-listbox-item-pad-inline: var(--button-padding);
+  --ac-listbox-item-hover-color-bg: var(--dropdown-item-hover-color);
+  --ac-listbox-item-hover-text-color: white;
+  --ac-listbox-item-active-color-bg: var(--dropdown-item-selected-bg-color);
+  --ac-listbox-item-active-text-color: white;
+  --ac-listbox-item-hightlight-outline: 1px dashed;
+  --ac-listbox-item-disabled-opacity: var(--fade);
+
+  --ac-listbox-body-height: var(--dropdown-default-height);
+
+  --ac-listbox-group-header-font-weight: var(--font-weight-bold);
+  --ac-listbox-group-header-type-case: uppercase;
+  --ac-listbox-group-header-font-size: 0.9em;
+  --ac-listbox-group-header-height: 1em;
+  --ac-listbox-group-header-border-top: none;
+  --ac-listbox-group-header-border-bottom: var(--dropdown-group-header-border-top);
+
+  box-shadow: var(--ac-listbox-shadow);
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  position: relative;
+
+  input {
+    display: block;
+    width: 0;
+    height: 0;
+  } // TODO Talk to Paul about how better to remove the white space this adds
+
+  &:focus,
+  &.\+focus,
+  &:has(:focus) {
+    box-shadow: var(--ac-listbox-focus-shadow);
+  }
+
+  .c-dropdown & {
+    &:first-child {
+      box-shadow: none;
+      overflow: hidden;
+      border-radius: var(--dropdown-border-radius);
+    }
+  }
+}
+
+.ac-listbox__head {
+  padding: var(--ac-listbox-head-padding);
+  border-bottom: var(--ac-listbox-head-border);
+}
+
+.ac-listbox__foot {
+  padding: var(--ac-listbox-foot-padding);
+  border-top: var(--ac-listbox-foot-border);
+}
+
+.ac-listbox__body {
+  flex: 1;
+  padding: 0;
+  max-height: var(--ac-listbox-body-height);
+  overflow: auto;
+  grid-row: bs / be;
+}
+
+.ac-listbox__item {
+  display: block;
+  line-height: var(--ac-listbox-item-height);
+  min-height: var(--ac-listbox-item-height);
+  padding-inline: var(--ac-listbox-item-pad-inline);
+
+  &:hover,
+  &.\+highlighted {
+    background: var(--ac-listbox-item-hover-color-bg);
+    cursor: pointer;
+    color: var( --ac-listbox-item-hover-text-color);
+  }
+
+  &.\+highlighted {
+    outline: var(--ac-listbox-item-hightlight-outline);
+  }
+
+  &.\+disabled {
+    opacity: var(--ac-listbox-item-disabled-opacity);
+  }
+
+  &.\+selected {
+    background: var(--ac-listbox-item-active-color-bg);
+    color: var(--ac-listbox-item-active-text-color);
+  }
+
+  &.\+group-header {
+    font-weight: var(--ac-listbox-group-header-font-weight);
+    text-transform: var(--ac-listbox-group-header-type-case);
+    font-size: var(--ac-listbox-group-header-font-size);
+    line-height: var(--ac-listbox-group-header-height);
+    min-height: var(--ac-listbox-group-header-height);
+    border-top: var(--ac-listbox-group-header-border-top);
+    border-bottom: var(--ac-listbox-group-header-border-bottom);
+
+    &:hover {
+      background-color: transparent;
+    }
+  }
+}

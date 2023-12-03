@@ -1,0 +1,106 @@
+$table-button-height: calc(#{$button-height} * #{$button-small-height-ratio});
+@use "sass:math";
+
+.c-button {
+  transition: none;
+
+  &.\+text {
+    &:hover {
+      color: var(--color-text);
+    }
+
+    &.\+3 {
+      color: var(--button-3);
+    }
+  }
+
+  &.\+quiet-border {
+    background: none;
+    border: solid $border-width var(--border-color-light);
+    color: $lightGrey;
+    padding-inline: calc($unit/4);
+  }
+
+  &.\+link {
+    text-decoration: underline;
+    padding: 0;
+    &:hover {
+      text-decoration: none;
+      box-shadow: none;
+    }
+  }
+
+  &.\+tight {
+    min-width: 0;
+    &.\+wrap {
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+  }
+
+  &.\+mid {
+    font-size: 1.5em;
+  }
+
+  td & {
+    line-height: $table-button-height;
+    min-height: $table-button-height;
+    font-size: font-size(milli);
+  }
+
+  &.\+floating {
+    @include position(fixed, n calc(#{$unit}/ 2) calc(#{$unit}/ 2) n);
+    .c-button__text {
+      @include visually-hide;
+    }
+  }
+
+  //STACKED BUTTON WITH ICON
+  &.\+stacked {
+    display: flex;
+    flex-direction: column;
+    gap: calc($unit/4);
+    @include padding(calc($unit/2));
+
+    .c-icon {
+      width: 1.3em;
+      height: 1.3em;
+      max-width: 1.3em;
+    }
+
+    .c-button__text {
+      font-size: font-size(milli);
+      font-weight: normal;
+      margin: 0;
+      line-height: 1;
+      white-space: break-spaces;
+      text-align: center;
+    }
+  }
+
+  //ADD IMAGE BUTTON
+  &.\+add-image {
+    aspect-ratio: var(--thumbnail-aspect-ratio);
+    border: 1px dashed;
+    border-color: var(--border-color);
+    background-color: var(--color-lightgrey);
+    box-shadow: none;
+    color: var(--color-text-alt);
+    width: 100%;
+  }
+
+  &.\+hide-text-on-mobile {
+    .c-button__text {
+      display: none;
+      @include screen-size(m) {
+        display: inline-block;
+      }
+    }
+  }
+}
+
+.c-button__icon {
+  td & {
+    max-width: 1.3em;
+  }
+}

@@ -1,0 +1,86 @@
+.c-uploader {
+  @include margin(n n math.div($unit, 2) n);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+
+  .cc-thumbnail & {
+    @include position(absolute, n calc(#{$unit} / -2) calc(#{$unit} / -2) calc(#{$unit} / -2));
+    @include margin(n n 0 n);
+    background-color: rgba(0, 0, 0, 0.66);
+    color: white;
+    gap: 0;
+    z-index: 1;
+  }
+}
+
+.c-uploader__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  @include font-size(font-size(milli));
+  gap: math.div($unit, 2);
+
+  .cc-thumbnail & {
+    align-items: stretch;
+    display: flex;
+    justify-content: normal;
+    flex-direction: column;
+    gap: 0;
+    padding: 0.5em;
+    text-align: left;
+    width: 100%;
+  }
+}
+
+.c-uploader__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.c-uploader__options {
+  flex-shrink: 0;
+}
+
+.c-uploader__filename {
+  width: 50%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  .cc-thumbnail & {
+    width: 100%;
+    font-weight: bold;
+  }
+}
+
+.c-uploader__size {
+  color: var(--color-text-alt);
+
+  .cc-thumbnail & {
+    color: white;
+  }
+}
+
+.c-uploader__other {
+  display: flex;
+  align-items: center;
+  gap: math.div($unit, 4);
+  .cc-thumbnail & {
+    align-items: center;
+    flex-direction: row;
+    .c-uploader__pending,
+    .c-uploader__size {
+      flex: 1;
+    }
+  }
+}
+
+.c-uploader__pending {
+  font-style: $italic;
+  color: var(--color-text-alt);
+  .cc-thumbnail & {
+    color: white;
+  }
+}

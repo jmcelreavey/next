@@ -1,0 +1,16 @@
+.cc-toolbar {
+  display: flex;
+  gap: 0.5em;
+  justify-content: space-between;
+  align-items: center;
+  @include margin(n n $padding n);
+}
+
+.cc-toolbar__title {
+  display: flex;
+  align-items: center;
+  gap: math.div($unit, 2);
+}
+
+.cc-toolbar__actions {
+}

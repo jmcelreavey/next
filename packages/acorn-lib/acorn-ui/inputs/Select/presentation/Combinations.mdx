@@ -1,0 +1,25 @@
+# Combinations
+
+import { Meta, Canvas } from "@storybook/addon-docs"; import { ListBox } from "../../ListBox/ListBox"; import { Button } from "morse-react"; import { Input } from "morse-react"; import { SelectButton } from "../SelectButton"; import { TriggeredLilyPad } from "../../../modals-and-dialogs/LilyPad/TriggeredLilyPad";
+
+## Combinations
+
+The select presentation components allow you to combine them together to build more complex select patterns without prescribing any particular behaviours.
+
+> Please note that these are only indicative of how to combine the components to acheive the visual effect. Do not expect these to interact the way you might imagine without creating a parent component to cross wire the relevant interactions.
+
+### Searchable list
+
+&#x20;This is item 1 This is item 2 This is item 3 This is item 4
+
+### Dropdown list
+
+You can combine a SelectButton, a TriggeredLilyPad and a ListBox to achieve a drop down list.
+
+{ return ( { console.log(element); context.show(element); \}} > Pick an item ); \}} > This is item 1 This is item 2 This is item 3 This is item 4
+
+### Searchable Dropdown list
+
+You can combine a SelectButton, an input, a TriggeredLilyPad and a ListBox to acheive a searchable drop down list.
+
+{ return (  { context.show(event.target); \}} /> ); \}} > This is item 1 This is item 2 This is item 3 This is item 4

@@ -1,0 +1,33 @@
+.c-select {
+  &.\+focus {
+    box-shadow: $field-focus-box-shadow;
+  }
+}
+
+.c-form.\+fill,
+.c-field.\+fill {
+  .c-select[style] {
+    width: auto !important;
+  }
+  .c-select.\+fill {
+    width: 100% !important;
+  }
+}
+
+.c-form.\+inline.\+grid {
+  .c-select[style] {
+    min-width: var(--min-input-width);
+  }
+
+  .c-select.\+units[style] {
+    min-width: auto;
+    width: $unit * 10 !important;
+  }
+
+  /* This needs refactored */
+  .c-field.\+fill {
+    .c-select {
+      min-width: auto;
+    }
+  }
+}

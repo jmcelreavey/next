@@ -1,0 +1,12 @@
+.c-progress[style] {
+  height: 1em !important;
+  .cc-thumbnail & {
+    border-radius: 0;
+  }
+}
+.c-progress {
+  height: 1em;
+  .\+small & {
+    height: math.div($unit, 3);
+  }
+}

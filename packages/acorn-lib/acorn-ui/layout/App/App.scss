@@ -1,0 +1,68 @@
+.ac-app {
+  --ac-app-gap: 0;
+  --ac-sidebar-width: auto;
+  --ac-aside-width: auto;
+
+  display: grid;
+  gap: var(--ac-app-gap);
+  grid-template-columns: var(--ac-sidebar-width) 1fr var(--ac-aside-width);
+  grid-template-rows: auto auto 1fr auto;
+  grid-template-areas:
+    "sidebar brand masthead"
+    "header header header"
+    "content content content"
+    "footer footer footer";
+  height: 100vh;
+
+  &.\+aside-open {
+    grid-template-areas:
+      "sidebar brand masthead"
+      "header header aside"
+      "content content aside"
+      "footer footer footer";
+  }
+
+  @include screen-size(m) {
+    grid-template-areas:
+      "brand masthead aside"
+      "sidebar header aside"
+      "sidebar content aside"
+      "sidebar footer footer";
+  }
+
+  > .ac-brand {
+    grid-area: brand;
+
+    @include screen-size(m-) {
+      --ac-brand-padding: 0;
+    }
+  }
+
+  > .ac-masthead {
+    grid-area: masthead;
+  }
+
+  > .ac-sidebar {
+    grid-area: sidebar;
+
+    @include screen-size(m-) {
+      width: auto;
+    }
+  }
+
+  > .ac-header {
+    grid-area: header;
+  }
+
+  > .ac-content {
+    grid-area: content;
+  }
+
+  > .ac-sidebar.\+aside {
+    grid-area: aside;
+  }
+
+  > .ac-footer {
+    grid-area: footer;
+  }
+}

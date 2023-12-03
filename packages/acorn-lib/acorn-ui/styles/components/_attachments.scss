@@ -1,0 +1,18 @@
+.cc-attachments {
+  display: flex;
+  flex-direction: column;
+}
+
+.cc-attachments__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--color-lightgrey);
+  border-radius: $radius;
+  @include padding(math.div($unit, 2));
+  @include margin(n n math.div($unit, 2) n);
+}
+
+.cc-attachments__filename {
+  @include font-size(font-size(milli));
+}

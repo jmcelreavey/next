@@ -1,0 +1,41 @@
+@use "sass:math";
+
+.c-dialog {
+  @include padding($unit * 1.5);
+
+  &.\+transparent {
+    --dialog-bg: transparent;
+    --dialog-text: var(--color-white);
+    box-shadow: none;
+  }
+
+  .c-button-bar:not(.\+stacked) {
+    flex-direction: row-reverse;
+    gap: calc(#{$unit}/ 2);
+
+    .\+end {
+      margin-inline-start: 0;
+      margin-inline-end: auto;
+    }
+
+    //> * + * {
+    //    margin-inline-start: 0;
+    //    margin-block-start: 0.5rem;
+    //}
+  }
+}
+
+.c-dialog__head {
+  @include margin(n n calc(#{$unit}/ 2) n);
+}
+
+.c-dialog__body {
+  @include padding(math.div($padding, 4) 2px math.div($padding, 2) n);
+  @include margin(n n calc(#{$unit}/ 2) n);
+}
+
+.c-dialog__close {
+  .c-icon {
+    @include font-size(font-size(gamma));
+  }
+}

@@ -1,0 +1,74 @@
+@use "sass:math";
+
+.c-tabs {
+  //TEMPORARY CHANGES MADE UNTIL ACORN GET'S UPDATED
+  // TO ALLOW CLASSES TO BE ADDED TO CRUD LIST TABS'
+  @include font-size(font-size(milli));
+  @include var(padding-left, responsive-padding);
+  @include var(padding-right, responsive-padding);
+  background-color: white;
+  overflow: auto;
+  max-width: 100%;
+  position: relative;
+  background-color: $white;
+  font-weight: $bold;
+
+  &.\+secondary {
+    @include font-size(font-size(micro));
+    border-bottom: 1px solid var(--border-color);
+    padding: 0;
+  }
+
+  .\+stats & {
+    padding-bottom: $unit;
+    gap: calc($unit/2);
+  }
+}
+
+.c-tab-item {
+  text-align: center;
+  color: var(--color-text-alt);
+
+  .\+secondary & {
+    padding-inline: var(--gap);
+    padding-block: calc(#{var(--gap)} / 2);
+  }
+
+  &.\+current {
+    color: var(--color-text);
+  }
+
+  &:hover {
+    color: var(--color-text);
+    background: transparent;
+  }
+
+  .c-pill {
+    @include margin(n n n calc($unit/4));
+  }
+
+  //TEMPORARY CHANGES MADE UNTIL ACORN GET'S UPDATED
+  // TO ALLOW CLASSES TO BE ADDED TO CRUD LIST TABS'
+
+  position: relative;
+  &.\+current {
+    &:after {
+      content: "";
+      @include position(absolute, auto 0 0 0);
+      background-color: var(--color-text);
+      display: block;
+      height: math.div($unit, 5);
+    }
+  }
+}
+
+.c-tab-content {
+  @include var(padding, responsive-padding);
+  .\+no-padding & {
+    padding: 0;
+  }
+
+  > .cc-section-header:first-child {
+    border-top: none;
+  }
+}

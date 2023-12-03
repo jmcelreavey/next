@@ -1,0 +1,49 @@
+import { Meta, Title } from "@storybook/addon-docs";
+import { LabelledInput } from "./LabelledInput/LabelledInput";
+import { TextBoxInput } from "../inputs/TextBox/TextBoxInput";
+
+<Title>Form Layout in Acorn</Title>
+
+## Working with Forms and Storybook
+
+When developing forms you should continue to use the storybook first approach.
+The two common component types you will create will be a `Form` component and
+a `FieldSet` component.
+
+### Form components
+
+Form components should be complete independant forms that contain a valid form
+tag and the buttons to submit the form. All behaviours should be supplied via
+props and ideally the screen hosting the form would pair the form component with
+a hook and spread the behaviours down.
+
+This approach allows designers to rework a form while continuing to respect its
+contract with the hosting page.
+
+Form components should end in the `Form` suffix to make it clear that they are
+self contained forms e.g. `BookingForm`.
+
+### Fieldset components
+
+If you've identified that parts of the form you are building should be reusable
+in other forms, consider creating a FieldSet component. This represents a group
+of fields that could be easily named - for example `ContactDetailsFieldset`.
+
+Fieldset components should, as the name implies, wrap the inputs in an
+Acorn `Fieldset` component which will ensure the `<fieldset>` tag is added to
+aid accessibility.
+
+Do not create components for use with more than one Fieldset. Experience has
+shown that anything beyond a single Fieldset is less likely to be reused as the
+chance of the specification of the second use case being different increases
+greatly.
+
+### Input layout
+
+Inputs can be laid out quickly using the `<LabelledInput>` component. This
+presents an input passed as child wrapped with a label and a validation
+message if provided.
+
+<LabelledInput errors={{ Firstname: { message: "Enter a firstname" } }}>
+  <TextBoxInput name="Firstname" />
+</LabelledInput>

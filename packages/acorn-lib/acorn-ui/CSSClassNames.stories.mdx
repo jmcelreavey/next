@@ -1,0 +1,137 @@
+# CSSClassNames.stories
+
+import { Meta, Title, Canvas } from "@storybook/addon-docs";
+
+CSS Class Names
+
+A guide to CSS class names in Acorn projects
+
+\
+
+
+### Namespaces
+
+In an effort to make the HTML more readable we add a short prefix for namespacing with all our CSS classes.
+
+| Namespace                                 | Description                                                  | Example              |
+| ----------------------------------------- | ------------------------------------------------------------ | -------------------- |
+| [**`ac-`**](CSSClassNames.stories.mdx#ac) | An Acorn Component                                           | `ac-masthead`        |
+| [**`c-`**](CSSClassNames.stories.mdx#c)   | A [MorseCSS](https://gcdtech.gitlab.io/morse/) Component     | `c-button`           |
+| [**`p-`**](CSSClassNames.stories.mdx#cc)  | A custom project specific component only used in one project | `p-wilsons-uploader` |
+| [**`u-`**](CSSClassNames.stories.mdx#u)   | A utility class                                              | `u-marg-bottom`      |
+| [**`s-`**](CSSClassNames.stories.mdx#s)   | A scope class                                                | `s-cms-content`      |
+
+### BEM Naming
+
+We use [BEM (Block Element Modifier)](https://getbem.com/naming/) in a further effort to make class names more readable.
+
+BEM naming lets us see which classes are in relationship to each other and brings some much needed structure to CSS.
+
+#### Block
+
+A standalone element that can stand on it's own. Usually this is the parent class.
+
+```css
+.ac-sidebar {
+  display: block;
+}
+```
+
+#### Element
+
+An element is a child node that is nested inside of the block and is formed as the block name plus two underscores.
+
+```css
+.c-button__icon {
+  font-size: 1rem;
+}
+```
+
+```html
+<button class="c-alert">
+  <div class="c-button__icon">...</div>
+  <div class="c-button__text">...</div>
+</button>
+```
+
+Using elements reduces the complexity of the nesting in our CSS files and means we can write the elements on their own line.
+
+```css
+.c-button .c-button__icon {
+} /* Wrong */
+.c-button__icon {
+} /* Right */
+```
+
+#### Modifier
+
+Modifier classes are used to create variations of the main component and are formed using a **+**
+
+```html
+<button class="c-button +ghost">...</button>
+```
+
+**@ Media Modifier**
+
+The **@** suffix is a special type of notation used to apply a media query to the class.
+
+```html
+<img class="u-hide@m" /> /* Hides the element on medium screens and above */
+```
+
+**Note:** This modifier generates quite a lot of extra CSS so it's not available for all classes. You should check the SCSS file to see if the media-query is being defined inside the class.
+
+```css
+.u-marg-none {
+  @include media-query(m s l-) {
+    margin: 0;
+  }
+}
+```
+
+### Acorn Class Names <a href="#ac" id="ac"></a>
+
+The Acorn namespace is specific to components that form part of the Acorn framework.
+
+```html
+<div class="ac-masthead +dark">
+  <div class="ac-masthead__logo"></div>
+</div>
+```
+
+### Morse Component Class Names <a href="#c" id="c"></a>
+
+Morse components are usually single purpose elements such as buttons, labels or inputs. They are well documented in the [MorseCSS Documentation](https://gcdtech.gitlab.io/morse/)
+
+```html
+<div class="c-pill">...</div>
+<label class="c-label">...</label>
+```
+
+### Project Component Class Names <a href="#cc" id="cc"></a>
+
+If you got a component that is very specific to your project then you should define it as a project specific component using the **`p-`** prefix.
+
+```html
+<div class="p-my-custom-component"></div>
+```
+
+### Utility Classes <a href="#u" id="u"></a>
+
+Utilty classes are the lowest form of specificity and apply a single purpose to an element. **They should be used rarely.**
+
+```html
+<p class="u-marg-bottom">...</p>
+```
+
+### Scope Classes <a href="#s" id="s"></a>
+
+Scope classes are used when we need to specifically change the styling of an entire block based on a class further up the DOM.
+
+Very useful when you can't specifically change the class names e.g. CMS content output or a styling a calendar plugin
+
+```html
+<div class="s-cms-content">
+  <!-- CMS content goes here -->
+</div>
+```

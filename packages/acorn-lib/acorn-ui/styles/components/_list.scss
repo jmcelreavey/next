@@ -1,0 +1,102 @@
+@use "sass:math";
+
+.cc-list {
+  &.\+sections {
+    padding-top: 1px;
+  }
+
+  &.\+dividers {
+    .cc-list__item:first-child {
+      border-top: none;
+    }
+  }
+
+  &.\+change-log {
+    display: inline-flex;
+  }
+}
+
+//Section Headers
+.cc-list__section-header {
+  --padding: #{$padding};
+  --section-padding: calc(var(--padding) / 2) calc(var(--padding));
+  @include padding(var(--section-padding));
+  border-top: 1px solid var(--border-color);
+  background-color: var(--color-lightgrey);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  &:first-child {
+    @include margin(calc(var(--padding) / 1.5) n n n);
+  }
+}
+
+.cc-list__item {
+  @include padding($padding);
+
+  &.\+with-icon,
+  &.\+with-icon a,
+  &.\+with-icon button {
+    display: flex;
+    align-items: center;
+    .c-icon {
+      margin-right: math.div($unit, 1.5);
+    }
+  }
+
+  .\+small & {
+    @include font-size(font-size(milli));
+  }
+
+  &.\+tight {
+    padding: 0.5em;
+  }
+
+  .\+buttons & {
+    &:hover {
+      background-color: var(--color-shade);
+      cursor: pointer;
+    }
+  }
+
+  .\+dividers & {
+    border-top: 1px solid var(--border-color);
+  }
+
+  &.\+selected {
+    background-color: var(--border-color);
+  }
+}
+
+.cc-list__item-header {
+  @include margin($unit * 1.5 n n n);
+  &:first-child {
+    @include margin(0 n n n);
+  }
+}
+
+.cc-list__button {
+  &:hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+}
+
+.cc-list-item {
+  display: flex;
+  @include padding(n $unit);
+  gap: $unit;
+  align-items: center;
+}
+
+.cc-list-item__button {
+  width: calc(#{$unit}* 5);
+  .c-button {
+    width: 100%;
+  }
+}
+
+.cc-list-item__details {
+  flex: 1;
+}

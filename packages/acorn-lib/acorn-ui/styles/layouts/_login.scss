@@ -1,0 +1,33 @@
+.l-login {
+  --login-bg-color: var(--color-light);
+  --login-form-color: var(--color-white);
+
+  background: var(--login-bg-color);
+  display: flex;
+  grid-template-columns: auto;
+  grid-template-rows: auto;
+  grid-template-areas: "form";
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  gap: $unit * 2;
+  padding: var(--responsive-padding);
+}
+
+.l-login__form {
+  padding: var(--responsive-padding);
+  background-color: var(--login-form-color);
+  border-radius: var(--border-radius);
+  max-width: $unit * 50;
+
+  select,
+  button {
+    width: 100%;
+  }
+}
+
+.l-login__logo {
+  padding: var(--responsive-padding);
+  width: 30%;
+  text-align: center;
+}

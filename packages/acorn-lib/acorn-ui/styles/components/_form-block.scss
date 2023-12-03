@@ -1,0 +1,38 @@
+.c-form-block {
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-areas: "bh" "bf";
+  grid-auto-flow: column;
+  gap: $unit;
+
+  @include screen-size(m) {
+    grid-template-columns: Min(#{$block}, 30%) 1fr;
+    grid-template-areas: "bh bf";
+  }
+
+  + .c-form-block {
+    @include margin($unit n n n);
+    @include padding($unit n n n);
+    border-top: 1px solid var(--border-color-light);
+    @include screen-size(l) {
+      @include margin(var(--responsive-padding) n n n);
+      @include padding(var(--responsive-padding) n n n);
+    }
+  }
+
+  &.\+stacked {
+    display: block;
+  }
+}
+
+.c-form-block__header {
+  grid-area: bh;
+}
+
+.c-form-block__header-help {
+  color: var(--color-text-alt);
+}
+
+.c-form-block__fields {
+  grid-area: bf;
+}

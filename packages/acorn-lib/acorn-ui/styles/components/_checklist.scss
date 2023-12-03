@@ -1,0 +1,116 @@
+.c-checklist {
+  &.\+no-label {
+    input[type="checkbox"]:checked ~ span {
+      padding-left: 0;
+    }
+  }
+
+  //Ability to make the checklist 100% in order to align the options to the right
+  &.\+fill {
+    width: 100%;
+  }
+
+  &.\+boxes {
+    display: flex;
+    //flex-wrap: wrap;
+    gap: 1px;
+    border-radius: $radius;
+    overflow: hidden;
+    .c-form.\+grid & {
+      justify-content: flex-end;
+    }
+
+    &.\+start {
+      justify-content: flex-start;
+    }
+
+    &.\+secondary {
+      input[type="checkbox"]:checked ~ span,
+      input[type="radio"]:checked ~ span {
+        border: var(--color-shade);
+        background: var(--color-text);
+        color: white;
+      }
+    }
+
+    &.\+large {
+      label {
+        display: flex;
+        flex: 1;
+      }
+      input[type="radio"] ~ span {
+        flex: 1;
+        align-items: center;
+        justify-content: center;
+
+        @include screen-size(m) {
+          @include font-size(font-size(beta));
+        }
+      }
+    }
+
+    label {
+      display: inline-flex;
+      margin: 0;
+    }
+
+    input[type="checkbox"],
+    input[type="radio"] {
+      left: -9999px;
+      top: 0;
+    }
+    input[type="radio"] ~ span {
+      padding: math.div($unit, 2) math.div($unit, 1.5);
+      display: flex;
+      flex-direction: column;
+      border: var(--color-shade);
+      background: var(--color-lightgrey);
+      color: var(--color-text-alt);
+      border-radius: 0;
+      font-weight: $bold;
+
+      &:hover {
+        background: var(--color-shade);
+      }
+    }
+
+    input[type="checkbox"]:focus ~ span,
+    input[type="radio"]:focus ~ span {
+      outline: 2px solid #004390;
+    }
+
+    input[type="checkbox"] ~ span:before,
+    input[type="radio"] ~ span:before {
+      display: none;
+    }
+
+    input[type="checkbox"] ~ span:after,
+    input[type="radio"] ~ span:before {
+      display: none;
+    }
+
+    input[type="checkbox"]:checked ~ span,
+    input[type="radio"]:checked ~ span {
+      border: var(--color-shade);
+      background: var(--color-pos);
+      color: white;
+    }
+
+    input[type="radio"]:checked ~ span:after {
+      display: none;
+    }
+  }
+}
+
+input[type="checkbox"] {
+  .\+check & {
+    width: $unit * 1.2;
+    height: $unit * 1.2;
+    margin-top: 0;
+  }
+}
+
+.c-checklist.\+boxes.\+fill + .c-field__feedback {
+  justify-self: flex-end;
+  margin-right: 0;
+}

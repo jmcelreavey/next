@@ -1,0 +1,22 @@
+.cc-avatar {
+  width: $unit * 2.5;
+  height: $unit * 2.5;
+  background-color: var(--color-lightgrey);
+  border-radius: 100%;
+  font-weight: $bold;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  @include font-size(font-size(milli));
+  letter-spacing: 2px;
+
+  &.\+rev {
+    background-color: var(--color-text);
+
+    > * {
+      color: var(--color-lightgrey);
+      fill: var(--color-lightgrey);
+    }
+  }
+}

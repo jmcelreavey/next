@@ -1,0 +1,32 @@
+.ac-breadcrumbs {
+  --ac-breadcrumbs-separator: "›";
+  --ac-breadcrumbs-link-style: var(--default-link-state);
+  --ac-breadcrumbs-link-hover-style: var(--default-link-hover-state);
+  --ac-breadcrumbs-gap: 0.25em;
+  --ac-breadcrumbs-link-color: var(--color-link);
+
+  display: flex;
+  list-style: none;
+  flex-wrap: wrap;
+  gap: var(--ac-breadcrumbs-gap);
+
+  a {
+    text-decoration: var(--ac-breadcrumbs-link-style);
+    color: var(--ac-breadcrumbs-link-color);
+
+    &:hover {
+      text-decoration: var(--ac-breadcrumbs-link-hover-style);
+    }
+  }
+
+  > * {
+    + * {
+      display: inline-flex;
+      gap: var(--ac-breadcrumbs-gap);
+
+      &:before {
+        content: var(--ac-breadcrumbs-separator);
+      }
+    }
+  }
+}

@@ -1,0 +1,80 @@
+import { Meta, Canvas } from "@storybook/addon-docs";
+import { Button, Pill, Heading } from "morse-react";
+
+<Meta title="Layout" />
+
+# Layouts
+
+There are a number of ways to achieve layouts.
+
+## One Axis
+
+Laying items out in a row or a column but not both.
+
+### Spaced Apart
+
+| Class Names                | When to use                                                 |
+| -------------------------- | ----------------------------------------------------------- |
+| `.ac-layout +spaced-apart` | Anchor one item to the start and another to the end of row. |
+
+<Canvas>
+  <div class="ac-layout +spaced-apart">
+    <h1 class="c-heading +h1">Customer Details</h1>
+    <Button>Edit</Button>
+  </div>
+</Canvas>
+
+### Inline
+
+| Class Names          | When to use                                                            |
+| -------------------- | ---------------------------------------------------------------------- |
+| `.ac-layout +inline` | Display a number of items in one row, aligned to the start of the row. |
+
+<Canvas>
+  <div class="ac-layout +inline">
+    <Pill>Shipped</Pill>
+    <Pill>New Customer</Pill>
+    <Pill>Outstanding Payment</Pill>
+  </div>
+</Canvas>
+
+### Centered
+
+| Class Names          | When to use                                                            |
+| -------------------- | ---------------------------------------------------------------------- |
+| `.ac-layout +centered` | Centers items with a space between each one |
+
+<Canvas>
+  <div class="ac-layout +centered">
+    <Button>Previous</Button>
+    <Heading>August 2023</Heading>
+    <Button>Next</Button>
+  </div>
+</Canvas>
+
+### Two Col
+
+| Class Names          | When to use                                                            |
+| -------------------- | ---------------------------------------------------------------------- |
+| `.ac-layout +two-col` | When you need a larger primary column and a smaller secondary one |
+
+<Canvas>
+  <div class="ac-layout +two-col">
+    <div>
+      <Heading level={Heading.Level.H2}>Primary Column</Heading>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ultrices eget ligula at
+        fringilla. Vestibulum laoreet in libero eu aliquet. Vestibulum aliquet orci commodo elit
+        aliquet gravida.
+      </p>
+    </div>
+    <div>
+      <Heading level={Heading.Level.H2}>Secondary Column</Heading>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ultrices eget ligula at
+        fringilla. Vestibulum laoreet in libero eu aliquet. Vestibulum aliquet orci commodo elit
+        aliquet gravida.
+      </p>
+    </div>
+  </div>
+</Canvas>

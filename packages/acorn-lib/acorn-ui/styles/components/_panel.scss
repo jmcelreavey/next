@@ -1,0 +1,93 @@
+.cc-panel {
+  + .cc-panel {
+    @include margin($unit n n n);
+    @include screen-size(m) {
+      @include margin($unit * 2 n n n);
+    }
+  }
+
+  &.\+1 {
+    @include var(background-color, color-white);
+    @include padding($unit);
+    box-shadow: $shadow-light;
+    border-radius: $radius;
+
+    @include screen-size(m) {
+      @include padding($unit * 2);
+    }
+  }
+  .c-heading {
+    @include margin(n n $unit n);
+  }
+
+  &.\+2 {
+    @include padding($unit);
+    @include var(background-color, color-fade);
+    border-radius: $radius;
+
+    @include screen-size(m) {
+      @include padding($unit * 2);
+    }
+    &.\+tighter {
+      @include screen-size(m) {
+        @include padding($unit * 1.5);
+      }
+      + .cc-panel.\+2.\+tighter {
+        @include screen-size(m) {
+          @include margin($unit * 0.5 n n n);
+        }
+      }
+    }
+  }
+
+  &.\+div {
+    + .cc-panel.\+div {
+      @include padding($unit n n n);
+      border-top: 2px solid $border-color;
+    }
+  }
+
+  &.\+block {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-gap: $unit;
+    grid-template-areas:
+      "title button"
+      "body body";
+    > .c-heading {
+      @include margin(n n 0 n);
+    }
+  }
+
+  ul {
+    list-style: disc outside;
+    @include padding(n n n 1.5em);
+  }
+  ul,
+  p {
+    @include margin(n n 1em n);
+    &:last-child {
+      @include margin(n n 0 n);
+    }
+  }
+}
+
+.cc-panel__title {
+  grid-area: title;
+}
+
+.cc-panel__buttons {
+  @include padding($unit * 0.25 n n n);
+  display: flex;
+  gap: $unit;
+  grid-area: button;
+}
+
+.cc-panel__button-list {
+  display: flex;
+  gap: $unit;
+}
+
+.cc-panel__body {
+  grid-area: body;
+}

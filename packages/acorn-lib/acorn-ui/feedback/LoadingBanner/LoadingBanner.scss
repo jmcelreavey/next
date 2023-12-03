@@ -1,0 +1,40 @@
+.ac-loading-banner {
+  --ac-loading-banner-bg-color: var(--color-fade);
+  --ac-loading-banner-padding: 0.5em 1em;
+  --ac-loading-banner-border-radius: var(--radius);
+  --ac-loading-banner-text-color: var(--color-1);
+  --ac-loading-banner-left-position: var(--unit);
+  --ac-loading-banner-animation-duration: 0.3s;
+
+  position: absolute;
+  background-color: var(--ac-loading-banner-bg-color);
+  padding: var(--ac-loading-banner-padding);
+  display: flex;
+  gap: var(--gap);
+  font-size: 1.1em;
+  border-radius: var(--ac-loading-banner-border-radius);
+  align-items: center;
+  top: var(--unit);
+  z-index: 9999;
+  animation: appear var(--ac-loading-banner-animation-duration) ease-in-out;
+  color: var(--ac-loading-banner-text-color);
+  font-weight: var(--font-weight-semibold);
+  left: var(--ac-loading-banner-left-position);
+
+  @keyframes appear {
+    from {
+      opacity: 0;
+      left: -200px;
+    }
+    to {
+      opacity: 100;
+      left: var(--unit);
+    }
+  }
+
+  .c-loader {
+    border-top-color: var(--ac-loading-banner-text-color);
+    animation-duration: 0.5s;
+    margin-inline: auto;
+  }
+}

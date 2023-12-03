@@ -1,0 +1,39 @@
+.c-heading {
+  &:not(.u-gap):has(.c-icon) {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25em;
+  }
+  // TODO Remove Fallback when Firefox supports :has()
+  &.\+icon {
+    @supports not selector(:has(a)) {
+      align-items: center;
+      display: flex;
+      gap: 0.25em;
+    }
+  }
+
+  &.\+h1 {
+    @media screen and (max-height: $screen-size-lh) {
+      @if $h1-size != false {
+        @include font-size(font-size($h1-size));
+      }
+    }
+  }
+}
+
+//SECTION HEADERS
+.cc-section-header {
+  --padding: var(--gap);
+  --section-padding: calc(var(--gap) / 2) calc(var(--gap));
+  @include padding(var(--section-padding));
+  background-color: var(--color-shade-light);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .cc-section-header__title {
+    @include font-size(font-size(alpha));
+  }
+}

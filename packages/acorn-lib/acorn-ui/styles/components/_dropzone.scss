@@ -1,0 +1,28 @@
+@use "sass:math";
+
+.c-dropzone {
+  background-color: transparent;
+  border: 1px dashed var(--field-border-color);
+  min-height: $unit * 10;
+  &.\+over {
+    background-color: var(--dropzone-over-color);
+    border: 1px dashed var(--color-dark);
+  }
+  &.\+cover {
+    @include position(absolute, $unit);
+    background-color: var(--dropzone-over-color);
+    border: 1px dashed var(--color-dark);
+    z-index: 1;
+  }
+
+  .c-dialog & {
+    min-height: $unit * 6;
+  }
+}
+
+.c-dropzone__icon {
+  .\+cover & {
+    opacity: 1;
+    fill: var(--color-text);
+  }
+}

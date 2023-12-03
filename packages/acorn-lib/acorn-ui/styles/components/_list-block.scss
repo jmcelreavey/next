@@ -1,0 +1,45 @@
+.cc-list-blocks {
+  &.\+full-height {
+    min-height: 100vh;
+  }
+
+  &.\+minimal {
+    .c-card-list {
+      gap: calc(#{$unit}/ 2);
+      @include screen-size(m) {
+        gap: calc((#{$unit} * 1.5) / 2);
+      }
+
+      &.\+3,
+      &.\+4 {
+        grid-template-columns: repeat(1, 1fr);
+
+        @include screen-size(m) {
+          grid-template-columns: repeat(4, 1fr);
+        }
+        @include screen-size(l) {
+          grid-template-columns: repeat(6, 1fr);
+        }
+      }
+      &.\+4 {
+        @include screen-size(xl) {
+          grid-template-columns: repeat(8, 1fr);
+        }
+      }
+
+      .c-list__item-preview {
+        display: none;
+      }
+    }
+  }
+}
+
+.cc-list-block + .cc-list-block {
+  @include margin($unit n n n);
+  @include padding($unit n n n);
+  border-top: $border-width solid var(--border-color);
+}
+
+.cc-list-block__header {
+  @include padding(n n $unit * 0.25 n);
+}

@@ -1,0 +1,10 @@
+.cc-main {
+  @include padding($unit);
+  @include screen-size(m) {
+    @include padding($unit * 2);
+  }
+}
+
+.busy * {
+  cursor: progress !important;
+}

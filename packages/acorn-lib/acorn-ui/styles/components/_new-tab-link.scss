@@ -1,0 +1,7 @@
+.cc-new-tab-link {
+  .c-icon {
+    @include position(relative, 2px n n n);
+    margin-left: calc(#{$unit}/ 2);
+    font-size: 1em;
+  }
+}

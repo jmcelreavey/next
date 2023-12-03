@@ -1,0 +1,50 @@
+.c-input {
+  &.\+search {
+    border-radius: $unit * 3;
+
+    + .c-icon {
+      position: absolute;
+      left: 0px;
+      top: 0px;
+      font-size: 20px;
+    }
+  }
+
+  &.\+reset {
+    background-color: transparent;
+    &.\+fill {
+      width: 100%;
+    }
+  }
+
+  &.\+text {
+    outline: none;
+
+    &:focus {
+      box-shadow: $field-focus-box-shadow;
+    }
+  }
+
+  .c-field.\+fill & {
+    flex: 1;
+  }
+
+  &.\+textarea {
+    &.\+note {
+      min-height: $unit * 8;
+    }
+  }
+}
+
+.c-form.\+inline.\+grid {
+  .c-input.\+text {
+    min-width: var(--min-input-width);
+  }
+
+  /* This needs refactored */
+  .c-field.\+fill {
+    .c-input.\+text {
+      min-width: auto;
+    }
+  }
+}

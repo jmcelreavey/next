@@ -1,0 +1,12 @@
+.c-loader {
+  &.\+large {
+    width: $unit * 2;
+    height: $unit * 2;
+  }
+
+  //Styles when displaying a loader inside a processing overlay
+  .\+processing-overlay & {
+    display: block;
+    border-top-color: white;
+  }
+}

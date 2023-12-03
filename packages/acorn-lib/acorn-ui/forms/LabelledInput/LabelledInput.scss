@@ -1,0 +1,20 @@
+.ac-labelled-input {
+  --ac-labelled-input-margin: var(--gap);
+
+  @include screen-size(m-) {
+    --ac-labelled-input-margin: calc( var( --gap ) / 2 ); 
+  }
+
+  margin-block-end: var(--ac-labelled-input-margin);
+  clear: both; // This is specifically to deal with the float on the legend
+
+  .c-input,
+  .ac-select {
+    width: 100%;
+  }
+
+  // remove the bottom margin
+  &.\+no-margin {
+    margin-bottom: 0;
+  }
+}

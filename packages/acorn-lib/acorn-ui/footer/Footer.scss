@@ -1,0 +1,15 @@
+.ac-footer {
+  --ac-footer-bg-color: var(--color-site);
+  --ac-footer-padding: var(--unit);
+  --ac-footer-text-color: var(--color-text);
+  --ac-footer-border-color: var(--border-color);
+
+  background-color: var(--ac-footer-bg-color);
+  padding: var(--ac-footer-padding);
+  color: var(--ac-footer-text-color);
+  display: flex;
+  justify-content: space-between;
+  gap: var(--gap);
+  align-items: center;
+  border-top: var(--ac-footer-border-color);
+}

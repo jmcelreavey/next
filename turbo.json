@@ -1,0 +1,48 @@
+{
+  "$schema": "https://turborepo.org/schema.json",
+  "globalDependencies": ["**/.env"],
+  "globalEnv": [
+    "CI",
+    "DATABASE_URL",
+    "NEXTAUTH_SECRET",
+    "NEXTAUTH_URL",
+    "NODE_ENV",
+    "GOOGLE_CLIENT_ID",
+    "GOOGLE_CLIENT_SECRET"
+  ],
+  "pipeline": {
+    "db:generate": {},
+    "db:push": {
+      "cache": false
+    },
+    "db:seed": {},
+    "db:nuke": {},
+    "db:start": {},
+
+    "db:studio": {},
+    "db:migrate": {},
+    "postinstall": {},
+    "start": {},
+    "prisma": {},
+    "cypress:dev": {},
+    "cypress:run": {},
+    "cypress:open": {},
+    "build-storybook": {},
+    "storybook": {},
+
+    "dev": {
+      "persistent": true,
+      "cache": false
+    },
+    "build": {
+      "dependsOn": ["^build", "^db:generate"],
+      "outputs": [".next/**"]
+    },
+    "lint": {},
+    "test": {
+      "dependsOn": ["^build"],
+      "outputs": ["coverage/**"]
+    },
+    "type-check": {}
+  }
+}

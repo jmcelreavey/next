@@ -1,0 +1,30 @@
+.ac-avatar {
+  --ac-avatar-size: var(--touch-target);
+  --ac-avatar-background-color: var(--color-accent);
+  --ac-avatar-text-color: var(--color-text);
+  --ac-avatar-font-size: font-size(milli);
+  --ac-avatar-border-radius: 100%;
+
+  align-items: center;
+  background-color: var(--ac-avatar-background-color);
+  border-radius: var(--ac-avatar-border-radius);
+  color: var(--ac-avatar-text-color);
+  display: flex;
+  font-weight: var(--font-weight-bold);
+  height: var(--ac-avatar-size);
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+  text-align: center;
+  width: var(--ac-avatar-size);
+  font-size: var(--ac-avatar-font-size);
+
+  img {
+    height: 100%;
+    left: 0;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+}

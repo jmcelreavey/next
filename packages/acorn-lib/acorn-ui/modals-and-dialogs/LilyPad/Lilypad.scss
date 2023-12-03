@@ -1,0 +1,18 @@
+.ac-lilypad {
+  --ac-lilypad-radius: var(--dropdown-border-radius);
+  --ac-lilypad-bg-color: var(--dropdown-background);
+  --ac-lilypad-shadow: var(--dropdown-shadow);
+  --ac-lilypad-border: var(--dropdown-border);
+  --ac-lilypad-padding: var(--button-padding);
+
+  border-radius: var(--ac-lilypad-radius);
+  background-color: var(--ac-lilypad-bg-color);
+  box-shadow: var(--ac-lilypad-shadow);
+  border: var(--ac-lilypad-border);
+  padding: var(--ac-lilypad-padding);
+  overflow: auto;
+
+  &:has(.ac-menu) {
+    --ac-lilypad-padding: 0;
+  }
+}

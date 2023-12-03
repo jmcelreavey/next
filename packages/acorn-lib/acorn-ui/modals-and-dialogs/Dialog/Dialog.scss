@@ -1,0 +1,214 @@
+@use "sass:math";
+
+.ac-dialog-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9998;
+}
+
+.ac-dialog {
+  border: none;
+  background: transparent;
+
+  .ac-dialog__frame {
+    @include padding($unit * 1.5);
+
+    @include var(background-color, $dialog-background);
+    @include var(color, $dialog-color);
+    display: grid;
+    grid-gap: $dialog-inner-gaps;
+    grid-template-columns: auto;
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas:
+      "head"
+      "body"
+      "foot";
+    max-width: calc(100vw - var(--#{$modal-container-padding}) * 2);
+    max-height: calc(100vh - var(--#{$modal-container-padding}) * 2);
+    overflow: auto;
+    pointer-events: auto;
+    width: $dialog-width-default;
+    z-index: zindex(top);
+
+    // Padding
+    @if $dialog-padding-default != none {
+      @include var(padding, $dialog-padding-default);
+    }
+
+    // Shadow
+    @if $dialog-shadow-default != none {
+      box-shadow: $dialog-shadow-default;
+    }
+
+    // Rounded
+    @if $dialog-radius-default != 0 {
+      border-radius: $dialog-radius-default;
+    }
+
+    &.\+reverse-head {
+      .c-dialog__icon {
+        @include margin(n 0 n $dialog-head-spacing, dir);
+        align-self: flex-start;
+        order: 3;
+      }
+      .c-dialog__heading {
+        order: 2;
+      }
+      .c-dialog__close {
+        @include margin(n $dialog-head-spacing n 0, dir);
+        align-self: center;
+        order: 1;
+      }
+    }
+
+    &.\+no-head {
+      grid-template-rows: 1fr auto;
+      grid-template-areas:
+        "body"
+        "foot";
+      .c-dialog__head {
+        display: none;
+      }
+    }
+    &.\+no-body {
+      grid-template-rows: auto auto;
+      grid-template-areas:
+        "head"
+        "foot";
+      .c-dialog__body {
+        display: none;
+      }
+    }
+    &.\+no-foot {
+      grid-template-rows: auto 1fr;
+      grid-template-areas:
+        "head"
+        "body";
+      .c-dialog__foot {
+        display: none;
+      }
+    }
+    &.\+simple {
+      display: block;
+    }
+
+    &.\+fixed {
+      @include position(fixed, 0 n n 0);
+    }
+
+    &.\+stretch {
+      @include media-query($dialog-mqs) {
+        align-self: stretch;
+        flex: 1;
+      }
+    }
+    &.\+stretch-x {
+      @include media-query($dialog-mqs) {
+        flex: 1;
+      }
+    }
+    &.\+stretch-y {
+      @include media-query($dialog-mqs) {
+        align-self: stretch;
+      }
+    }
+    &.\+overflow {
+      @include media-query($dialog-mqs) {
+        overflow: auto;
+      }
+      .c-dialog__body {
+        overflow: visible;
+      }
+      .c-dialog__foot {
+        @include margin(
+          n n
+            calc(
+              (
+                  #{$dialog-foot-padding} * 1em + var(--#{$dialog-padding-default})
+                ) * -1
+            )
+            n
+        );
+        @include padding(
+          n n
+            calc(
+              #{$dialog-foot-padding} * 1em + var(--#{$dialog-padding-default})
+            )
+            n
+        );
+      }
+    }
+    &.\+flush {
+      @include media-query($dialog-mqs) {
+        max-width: 100vw;
+        max-height: 100vh;
+      }
+    }
+
+    &.\+transparent {
+      --dialog-bg: transparent;
+      --dialog-text: var(--color-white);
+      box-shadow: none;
+    }
+
+    .c-button-bar:not(.\+stacked) {
+      flex-direction: row-reverse;
+      gap: calc(#{$unit}/ 2);
+
+      .\+end {
+        margin-inline-start: 0;
+        margin-inline-end: auto;
+      }
+    }
+
+    .ac-dialog__head {
+      @include padding($dialog-head-padding);
+      align-items: flex-start;
+      display: flex;
+      justify-content: space-between;
+      grid-area: head;
+      @if $dialog-head-bg != transparent {
+        background-color: $dialog-head-bg;
+      }
+      @include margin(n n calc(#{$unit}/ 2) n);
+      .c-heading {
+        line-height: 120%;
+
+        @include screen-size(m) {
+          max-width: 60vw;
+        }
+        @include screen-size(l) {
+          max-width: 35vw;
+        }
+      }
+    }
+
+    .ac-dialog__body {
+      @include padding(math.div($padding, 4) 2px math.div($padding, 2) n);
+      @include margin(n n calc(#{$unit}/ 2) n);
+      grid-area: body;
+      overflow: auto;
+    }
+
+    .ac-dialog__foot {
+      @include padding($dialog-foot-padding);
+      grid-area: foot;
+      @if $dialog-foot-bg != transparent {
+        background-color: $dialog-foot-bg;
+      }
+    }
+
+    .ac-dialog__close {
+      .c-icon {
+        @include font-size(font-size(gamma));
+      }
+    }
+  }
+}

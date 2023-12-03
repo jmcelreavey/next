@@ -1,0 +1,89 @@
+import { Canvas } from "@storybook/addon-docs";
+import { Button, Buttons, ButtonBar, slowly } from "morse-react";
+import { ButtonLink } from "./ButtonLink";
+import { BackButton } from "./BackButton";
+
+# Buttons
+
+A button is any component that can be clicked on to perform an action. Buttons are used
+to submit forms and trigger important actions.
+
+## Button components
+
+Use the following components when creating buttons:
+
+### Button
+
+Use the Morse `<Button>` component rather than the native `<button>`. This is simply a
+styled variant but one which also understands onClick handlers that return promises
+which will put the button into a busy state and prevent the user from "double clicking"
+
+<Canvas>
+  <Button
+    onClick={() =>
+      slowly(() => {
+        alert("done after 3 seconds");
+      }, 3000)
+    }
+  >
+    Click me
+  </Button>
+</Canvas>
+
+Consult the [Morse docs](https://gcdtech.gitlab.io/morse/storybook/?path=/story/morse-react-components-button--simple-button)
+for more information on the supported styling props of `Button`
+
+### Buttons
+
+Use the Morse `<Buttons>` component to layout out closely related buttons that might live as a family.
+
+<Canvas>
+  <Buttons>
+    <Button>Archive</Button>
+    <Button>Delete</Button>
+    <Button>Report</Button>
+  </Buttons>
+</Canvas>
+
+Consult the [Morse docs](https://gcdtech.gitlab.io/morse/storybook/?path=/story/morse-react-components-buttons--default-settings)
+for more information on the supported styling props of `Buttons`
+
+### ButtonLink
+
+If you only want to navigate to destination using the router, consider using the `<ButtonLink>` component instead
+of attaching an onClick to a `<Button>`. This will ensure that the button is rendered as an `<a>` tag and will
+therefore be more accessible.
+
+<Canvas>
+  <ButtonLink href="/">Go Home</ButtonLink>
+</Canvas>
+
+> Note that generally most navigation links should appear as standard links. Buttons normally trigger an action
+> rather than navigate. There are notable exceptions to this rule however. For example users are very familiar
+> with a Cancel button on a form, especially when used in a dialog. However this can normally be implemented as
+> by simply navigating back to the previous page.
+>
+> Always consider if a ButtonLink is masking a different question we should ask of our design - should we
+> just use a link?
+
+### BackButton
+
+BackButton implements a "back" navigation event. Depending on the situation, this is often the best
+way to implement a cancel button as it will bring the user back to the exact state they were on before.
+This becomes very important in CRUD forms where the user may have customised the filters and sorts of
+the list and want to return to the correct place if they cancel.
+
+### ButtonBar
+
+Use the Morse `<ButtonBar>` component to surround buttons when those buttons naturally represent the possible actions
+of a task. This can bar can then be targetted in stylesheets to position it appropriately.
+
+<Canvas>
+  <ButtonBar>
+    <Button>Save</Button>
+    <Button className="+ghost">Cancel</Button>
+  </ButtonBar>
+</Canvas>
+
+Consult the [Morse docs](https://gcdtech.gitlab.io/morse/storybook/?path=/story/morse-react-components-buttonbar--default-settings)
+for more information on the supported styling props of `ButtonBar`

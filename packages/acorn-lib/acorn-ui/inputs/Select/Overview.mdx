@@ -1,0 +1,30 @@
+import { Meta, Title, Canvas } from "@storybook/addon-docs";
+import { Description, Primary } from "@storybook/blocks";
+
+<Title>Select inputs in Acorn</Title>
+
+Select inputs can be any type of input that allows users to select from a list of options.
+
+The most familiar perhaps is the native `<select>` input in the browser, however also
+consider radio groups, sets of checkboxes, listboxes and other more inventive
+solutions.
+
+Common to all select inputs is the concept of a list of possible options. Frequently these
+need to be loaded from a datasource at run time, and sometimes can contain large numbers of
+results that need to be filtered.
+
+In Acorn we have solved this problem generally by the creation of a `useOptionsSource` hook.
+It can translate one of a number of possible source types into a standardised array of
+`OptionItem` objects for select inputs to consume.
+
+> When building custom and unique selection inputs, try to recognise that it fits the
+> pattern of a select input and use the `useOptionsSource` hook to provide the options.
+
+## Notes on accessibility
+
+Custom built select inputs are notoriously hard to make accessible. The native `<select>`
+may be a better option despite its limitations. Consider carefully how your input will
+work on a mobile device especially if your interface is targetted at that environment.
+
+If you do build your own, please use hooks like `useHighlightedOption` and
+`useListKeyboardNavigation` to provide the best experience for keyboard users.

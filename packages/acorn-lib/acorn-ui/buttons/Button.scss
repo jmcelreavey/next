@@ -1,0 +1,17 @@
+.c-button {
+  &.\+primary {
+    @extend .\+1;
+  }
+  &.\+secondary {
+    @extend .\+2, .\+ghost;
+  }
+  &.\+destructive {
+    @extend .\+neg;
+  }
+  &.\+toggle-ui {
+    @extend .\+ghost;
+  }
+  &.\+subtle {
+    @extend .\+text;
+  }
+}

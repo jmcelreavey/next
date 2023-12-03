@@ -1,0 +1,39 @@
+.cc-file {
+  display: grid;
+  grid-gap: math.div($unit, 2);
+  grid-template-columns: auto 1fr auto;
+}
+
+.cc-file__icon {
+  display: flex;
+  align-self: flex-start;
+  background-color: $foreground-color;
+  color: $white;
+  line-height: 0;
+  @include padding(math.div($padding, 2));
+  border-radius: math.div($radius, 2);
+  span {
+    @include visually-hide;
+  }
+}
+
+.cc-file__content {
+  line-height: 1em;
+}
+
+.cc-file__title {
+  @include font-size(font-size(milli));
+  flex: 1;
+  font-weight: $bold;
+  display: block;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  position: relative;
+  min-width: 0;
+}
+
+.cc-file__byline {
+  @include font-size(font-size(micro));
+}

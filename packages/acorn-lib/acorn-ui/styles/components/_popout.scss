@@ -1,0 +1,9 @@
+.c-pop-out {
+  background-color: $white;
+  box-shadow: $shadow-heavy;
+  border-radius: $radius;
+}
+
+.c-pop-out {
+  z-index: 1000;
+}

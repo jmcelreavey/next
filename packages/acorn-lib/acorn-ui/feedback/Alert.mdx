@@ -1,0 +1,152 @@
+import { Canvas, Title } from "@storybook/addon-docs";
+import { Alert, Icon, Loader } from "morse-react";
+
+<Title>Alerts</Title>
+
+The `<Alert>` component should be the go to way of providing feedback to the user. It
+can have a number of variations with the colour dictating the severity.
+
+> The **most important** aspect of feedback in the alert is the message itself. It should
+> be clear and concise and provide the user with instruction on how to resolve any issues.
+
+### Warnings
+
+The warning alert should be used when you need to call attention to something. It's
+not the same as an error though which is a direct result of user actions.
+
+<Canvas>
+  <Alert className="+align-start +warn">
+    <Icon iconName="icon-warning" />
+    <div className="c-alert__text">
+      <p>
+        <strong>We couldn't find any orders with the ID of 213456</strong>
+      </p>
+      Please try your search again
+    </div>
+  </Alert>
+</Canvas>
+
+```jsx
+<Alert className="+align-start +warn">
+  <Icon iconName={AcornIcon.Notifications.Warn} />
+  <div className="c-alert__text">
+    <p>
+      <strong>We couldn't find any orders with the ID of 213456</strong>
+    </p>
+    Please try your search again
+  </div>
+</Alert>
+```
+
+### Loader
+
+Adding a Loader component to the alert provides useful feedback when a screen or component
+is loading into view.
+
+<Canvas>
+  <Alert className="+align-start">
+    <Loader></Loader>
+    <div className="c-alert__text">
+      Loading...
+    </div>
+  </Alert>
+</Canvas>
+
+```jsx
+<Alert className="+align-start">
+    <Loader></Loader>
+    <div className="c-alert__text">
+      Loading
+    </div>
+  </Alert>
+```
+
+### Reporting Errors
+
+Error feedback should be clear and provide information on how to correct the error.
+
+<Canvas>
+  <Alert className="+align-start +neg">
+    <Icon iconName="icon-x" />
+    <div className="c-alert__text">
+      <p>
+        <strong>There were 2 errors with your form submission</strong>
+      </p>
+      <ol>
+        <li>Your email address is not valid</li>
+        <li>You must choose a date after today</li>
+      </ol>
+    </div>
+  </Alert>
+  <Alert className="+align-start +neg">
+    <Icon iconName="icon-x" />
+    <div className="c-alert__text">
+      <strong>Incorrect Password.</strong>&nbsp;Please try again.
+    </div>
+  </Alert>
+</Canvas>
+
+
+```jsx
+<Alert className="+align-start +neg">
+  <Icon iconName={AcornIcon.Actions.x} />
+  <div className="c-alert__text">
+    <p>
+      <strong>There were 2 errors with your form submission</strong>
+    </p>
+    <ol>
+      <li>Your email address is not valid</li>
+      <li>You must choose a date after today</li>
+    </ol>
+  </div>
+</Alert>
+```
+
+### Success Messages
+
+Providing feedback when a successful action has occured.
+
+<Canvas>
+  <Alert className="+align-start +pos">
+    <Icon iconName="icon-check" />
+    <div className="c-alert__text">
+      <p>
+        <strong>Customer added successfully</strong>
+      </p>
+    </div>
+  </Alert>
+</Canvas>
+
+```jsx
+<Alert className="+align-start +pos">
+  <Icon iconName={AcornIcon.Actions.Check} />
+  <div className="c-alert__text">
+    <p>
+      <strong>Customer added successfully</strong>
+    </p>
+  </div>
+</Alert>
+```
+
+### Providing Information
+
+The default Alert style is for passive information only.
+
+<Canvas>
+  <Alert className="+align-start">
+    <Icon iconName="icon-info" />
+    <div className="c-alert__text">System Update Found</div>
+  </Alert>
+  <br />
+  <Alert className="+align-start">
+    <Icon iconName="icon-info" />
+    <div className="c-alert__text">John Smith edited this customer record on Jun 20 2023</div>
+  </Alert>
+</Canvas>
+
+```jsx
+<Alert className="+align-start">
+  <Icon iconName={AcornIcon.Notifications.Info} />
+  <div className="c-alert__text">System Update Found</div>
+</Alert>
+```

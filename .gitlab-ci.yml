@@ -1,0 +1,75 @@
+variables:
+  MYSQL_DATABASE: docker
+  MYSQL_ROOT_PASSWORD: docker
+  MYSQL_USER: docker
+  MYSQL_PASSWORD: docker
+  MYSQL_HOST: mysql:2055
+  MYSQL_TCP_PORT: 2055
+  DB_HOST: mysql
+  # checkov:skip=CKV_SECRET_4:Hardcoded_Plaintext_Secret
+  DATABASE_URL: mysql://docker:docker@mysql:2055/docker
+  npm_config_cache: $CI_PROJECT_DIR/obsidian/.npm
+  CYPRESS_CACHE_FOLDER: $CI_PROJECT_DIR/obsidian/cache/Cypress
+  IS_CI: "true"
+
+lint-and-test:
+  when: manual
+  stage: test
+  image: node:18
+  tags:
+    - docker-io
+  cache:
+    paths:
+      - ./node_modules
+    policy: pull-push
+  script:
+    - npm install
+    - npm run lint
+    - npm run type-check
+    - npm run test -- --run
+
+cypress-e2e:
+  when: manual
+  needs: []
+  tags:
+    - docker-io
+  cache:
+    paths:
+      - ./packages/obsidian/cache/Cypress
+      - ./packages/obsidian/.npm
+      - ./packages/obsidian/node_modules
+      - ./node_modules
+    policy: pull-push
+  stage: test
+  image: cypress/base:18.12.0
+  services:
+    - mysql:8
+  script:
+    - apt update && apt install -y netcat git default-mysql-client curl
+    - curl -sL https://git.io/slack > /usr/local/bin/slack && chmod +x /usr/local/bin/slack
+    - npm install
+    - npm run db:push
+    - npm run db:seed-only
+    - npm run cypress:dev &>/dev/null &
+    - cd "./packages/obsidian"
+    - mv "cucumber-json-formatter" "/usr/bin/"
+    - npm install
+    - while ! nc -q 1 localhost 3000 </dev/null; do sleep 10; done
+    - echo "Websites are up"
+    - mysqldump -h mysql -u docker --no-tablespaces --password=docker docker | grep -v '\[Warning\].*' > `git -C '../../' rev-parse HEAD`-snapshot.sql
+    - npx cypress cache path
+    - npx cypress cache list
+    - npm run test:passing || echo "Cypress tests failed" >> .out.txt
+  after_script:
+    - cd "./packages/obsidian"
+    - node reporter.js
+    - if [ -f .out.txt ]; then
+      echo "Cypress tests failed" | slack notify;
+      fi
+  artifacts:
+    when: always
+    paths:
+      - ./packages/obsidian/artefacts/report/*
+      - ./packages/obsidian/*.sql
+    expire_in: 1 days
+  allow_failure: true

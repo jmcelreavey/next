@@ -1,0 +1,7 @@
+.cc-page-footer {
+  display: grid;
+  position: sticky;
+  bottom: 0;
+  background-color: white;
+  @include var(padding, responsive-padding);
+}

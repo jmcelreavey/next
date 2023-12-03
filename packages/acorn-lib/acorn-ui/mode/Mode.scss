@@ -1,0 +1,50 @@
+.ac-mode {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-areas:
+    "header toggle"
+    "content content";
+
+  &.\+spaced {
+    row-gap: var(--gap);
+  }
+}
+
+.ac-mode__toggle {
+  grid-area: toggle;
+}
+
+.ac-mode__header {
+  grid-area: header;
+  align-items: center;
+  display: flex;
+}
+
+.ac-mode__view {
+  grid-area: content;
+
+  p {
+    margin-block-end: var(--gap);
+  }
+}
+
+.ac-mode__edit {
+  grid-area: content;
+}
+
+.ac-section.p-workshop-extras {
+  .ac-mode {
+    row-gap: var(--gap);
+
+    .c-button.\+long {
+      grid-column-start: 1;
+      grid-column-end: 3;
+    }
+  }
+
+  .ac-mode__view {
+    background-color: var(--color-light);
+    border-radius: var(--border-radius);
+    padding: var(--gap);
+  }
+}

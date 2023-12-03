@@ -1,0 +1,66 @@
+.ac-sidebar.\+aside {
+  --ac-aside-background-color: var(--color-site);
+  --ac-aside-padding: var(--unit) 0;
+  --ac-aside-text-color: var(--color-text);
+  --ac-aside-border-radius: var(--radius) 0 0 var(--radius);
+  --ac-aside-box-shadow: var(--shadow-heavy);
+  --ac-aside-width: 25em;
+
+  background-color: var(--ac-aside-background-color);
+  padding: var(--ac-aside-padding);
+  color: var(--ac-aside-text-color);
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
+  width: var(--ac-aside-width);
+
+  @include screen-size(m) {
+    width: var(--ac-aside-width);
+  }
+
+  &.\+modal {
+    position: fixed;
+    right: 0px;
+    top: 0px;
+    bottom: 0px;
+    overflow: auto;
+
+    @include screen-size(m-) {
+      --ac-aside-width: 100vw;
+    }
+
+    @include screen-size(m) {
+      border-radius: var(--ac-aside-border-radius);
+      box-shadow: var(--ac-aside-box-shadow);
+    }
+  }
+
+  .c-heading {
+    justify-content: space-between;
+    flex: 1;
+
+    &.\+border-bottom {
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: calc(var(--gap) / 4);
+      margin-bottom: var(--gap);
+    }
+  }
+
+  > .c-button-bar {
+    padding: 0 var(--gap);
+  }
+
+  .p-workshop-extras {
+    display: flex;
+    flex-direction: column;
+    margin-top: calc(var(--gap) * 2);
+    gap: calc(var(--gap) * 1.5);
+  }
+
+  .p-extra-services-list li {
+    &::before {
+      content: "- ";
+      color: var(--color-grey);
+    }
+  }
+}

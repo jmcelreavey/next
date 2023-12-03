@@ -1,0 +1,140 @@
+.c-card {
+  --card-pad: #{$unit};
+  align-items: flex-start;
+  box-shadow: $shadow-light;
+  background-color: $white;
+  border-radius: $radius;
+  flex: 1;
+  padding: var(--card-pad);
+
+  &.\+shaded {
+    box-shadow: none;
+    background-color: rgba($black, $shade-amount * 0.25);
+  }
+  &.\+no-hov {
+    &:hover {
+      box-shadow: none;
+    }
+  }
+
+  &:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  }
+
+  &.\+selected {
+    box-shadow: inset 0 0 0 2px var(--color-link);
+  }
+
+  &.\+pad-tight {
+    --card-pad: #{$unit * 0.75};
+  }
+
+  &.\+pad-x-tight {
+    --card-pad: #{$unit * 0.5};
+  }
+  &.\+x {
+    --card-img-pad: calc(var(--card-pad) * 1.5);
+    .c-card__image {
+      padding-inline-end: var(--card-img-pad);
+      &:empty {
+        padding-inline-end: 0;
+      }
+    }
+  }
+}
+
+.c-card-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: $unit;
+  @include screen-size(m) {
+    gap: $unit * 1.5;
+  }
+
+  &.\+3,
+  &.\+4 {
+    grid-template-columns: repeat(1, 1fr);
+
+    @include screen-size(m) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    @include screen-size(l) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  &.\+4 {
+    @include screen-size(xl) {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  &.\+1 {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  &.\+tight {
+    gap: $unit * 0.25;
+  }
+}
+
+.c-card-list__item {
+  &.\+added {
+    > .c-card {
+      box-shadow: inset 0 0 0 2px var(--color-pos);
+    }
+  }
+}
+
+.c-card__selector {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  gap: $unit;
+  cursor: pointer;
+  span {
+    pointer-events: none;
+  }
+  .c-card.\+selector-rev &,
+  &.\+rev {
+    flex-direction: row-reverse;
+  }
+  .c-card.\+selector-full &,
+  &.\+full {
+    width: 100%;
+    span {
+      flex: 1;
+    }
+  }
+}
+
+.c-card__footer {
+  &.\+tight {
+    margin-top: 0;
+  }
+  &.\+tighter {
+    margin-top: $unit * 0.5;
+  }
+}
+
+.c-card__detail {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.c-card__list-item {
+  display: flex;
+}
+
+.c-card__image {
+  .cc-asset-list & {
+    max-width: 68px;
+    img {
+      aspect-ratio: 1/1;
+      border-radius: 2px;
+      box-shadow: $shadow-light;
+      object-fit: cover;
+      width: 100%;
+    }
+  }
+}

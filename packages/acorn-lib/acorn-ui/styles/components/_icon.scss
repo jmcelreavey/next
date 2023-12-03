@@ -1,0 +1,5 @@
+.c-icon {
+  &.\+xl {
+    @include font-size(font-size(epsilon));
+  }
+}

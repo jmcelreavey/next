@@ -1,0 +1,56 @@
+# CRUD - Create. Read. Update. Delete.
+
+CRUD is a very common pattern for interacting with data. It's a set of operations
+that we can perform on data. We can create new data, read existing data, update
+existing data, and delete existing data.
+
+In many applications many of these operations can be mapped to very common
+user interface elements. For example, a form for creating new data, a list for
+presenting existing data, a form for updating existing data, and a button for
+deleting existing data.
+
+Acorn contains a family of components that are designed to make it easy to
+build CRUD like interfaces. The components assist in building list interfaces
+and create and update forms.
+
+## CRUD Lists
+
+```jsx
+  <Content>
+    <Tabs>
+        <ListFilterTabs />
+
+    </Tabs>
+
+    <List>
+      <List.Head>
+        <FilterBar>
+            <PhraseSearch/>
+            <ToggleFilters/>
+        </FilterBar>
+        <BatchActionsBar />
+      </List.Head>
+      <List.Body>
+        <Table />
+      </List.Body>
+      <List.Foot>
+        <Pager />
+      </List.Foot>
+    </List>
+
+    <Aside>
+      <Title>Quick info for this item</Title>
+      <KeyValuePairs>
+        <KeyValuePair definition="name">{item.name}</KeyValuePair>
+      </KeyValuePairs>
+    </Aside>
+  </Content>
+  <Aside>
+    <Title>Advanced Filters</Title>
+    <Form>
+        <LabelledInput>
+            <Select name="status" />
+        </LabelledInput>
+    </Form>
+  </Aside>
+```

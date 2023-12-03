@@ -1,0 +1,16 @@
+.cc-label {
+  text-transform: uppercase;
+  font-weight: $bold;
+  color: var(--color-text-alt);
+  @include font-size(font-size(milli));
+}
+
+.c-label {
+  @include font-size(font-size(milli));
+
+  &.\+check {
+    @include font-size(font-size(alpha));
+    @include margin(calc($unit/5) n n n);
+    align-items: center;
+  }
+}

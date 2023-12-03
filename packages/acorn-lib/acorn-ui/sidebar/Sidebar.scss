@@ -1,0 +1,50 @@
+.ac-sidebar {
+  --ac-sidebar-background-color: var(--color-fade);
+  --ac-sidebar-padding: 0;
+  --ac-sidebar-text-color: var(--color-text);
+  --ac-sidebar-width: var(--sidebar-width);
+  --ac-sidebar-heading-padding: 0.25em;
+  --ac-sidebar-heading-color: var(--color-text);
+
+  &:not(&.\+aside) {
+    background-color: var(--ac-sidebar-background-color);
+    gap: var(--gap);
+    display: flex;
+    flex-direction: column;
+
+    @include screen-size(m-) {
+      align-items: center;
+      justify-content: center;
+
+      .ac-nav-toggle .c-button {
+        padding: calc(var(--gap) * 2);
+      }
+    }
+
+    @include screen-size(m) {
+      padding: var(--ac-sidebar-padding);
+      width: var(--ac-sidebar-width);
+      color: var(--ac-sidebar-text-color);
+    }
+
+    .c-card:has(.ac-title + .c-pill) {
+      display: none;
+      flex-direction: row;
+      justify-content: space-between;
+      @include screen-size(m) {
+        display: flex;
+      }
+    }
+
+    .c-heading {
+      padding: var(--ac-sidebar-heading-padding);
+
+      &:has(.c-pill) {
+        .c-icon {
+          font-size: 1em;
+          --ac-title-icon-color: white;
+        }
+      }
+    }
+  }
+}

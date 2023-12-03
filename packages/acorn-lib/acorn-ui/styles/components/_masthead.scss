@@ -1,0 +1,98 @@
+@use "sass:math";
+
+.c-masthead {
+  @include var(background-color, masthead-bg-color);
+  z-index: zindex(top);
+  border-bottom: 1px solid var(--border-color-light);
+  display: grid;
+  align-items: center;
+  grid-template-columns: 1fr auto auto;
+  grid-template-areas: "masthead-main masthead-content masthead-actions";
+
+  @include screen-size(m) {
+    grid-template-columns: auto 1fr auto;
+  }
+}
+
+.c-masthead__main {
+  display: flex;
+  align-items: center;
+}
+
+.c-masthead__menu {
+  @include padding(0 0 0 calc(#{$padding}/ 2));
+  @include screen-size(m) {
+    display: none;
+  }
+}
+
+.c-masthead__logo {
+  @include padding(math.div($padding, 2));
+  margin-right: math.div($padding, 2);
+
+  img {
+    height: $touch-target;
+    display: block;
+  }
+}
+
+.c-masthead__user {
+  @include padding(math.div($padding, 2));
+
+  @include screen-size(m) {
+    @include padding($padding);
+  }
+
+  @include position(relative);
+  display: flex;
+  align-items: center;
+
+  .c-icon {
+    opacity: 0.5;
+  }
+
+  .c-pop-out {
+    display: none;
+  }
+
+  &:hover {
+    .c-icon {
+      opacity: 1;
+    }
+
+    .c-pop-out {
+      display: block;
+    }
+  }
+
+  .c-pop-out {
+    width: $unit * 20;
+  }
+}
+
+.c-masthead__branch {
+  display: none;
+  @include screen-size(m) {
+    display: flex;
+    align-items: center;
+    @include padding(n $padding);
+  }
+}
+
+.c-masthead__user-name {
+}
+
+.c-masthead__actions {
+  display: flex;
+}
+
+.c-masthead__settings {
+  position: relative;
+  display: inline-block;
+
+  &:hover {
+    .c-dropdown-settings {
+      display: block;
+    }
+  }
+}

@@ -1,0 +1,37 @@
+//Drawer is currently used for filters in Acorn
+
+.cc-drawer {
+  @include var(width, filter-drawer-width);
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+
+  .c-form {
+    overflow: auto;
+
+    .c-select {
+      width: 100% !important;
+      white-space: nowrap;
+      overflow: hidden;
+      .u-flex-wrap {
+        flex-wrap: nowrap;
+      }
+    }
+  }
+}
+
+.cc-drawer__header {
+  margin-block-end: var(--gap);
+  display: flex;
+  gap: 0.5em;
+
+  .c-heading {
+    flex: 1;
+  }
+
+  .c-button {
+    --button-height: none;
+    --button-line-height: inherit;
+    background-color: transparent;
+    color: inherit;
+  }
+}

@@ -1,0 +1,134 @@
+.l-acorn {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  grid-template-columns: auto 1fr auto;
+  height: 100%;
+  @include screen-size(m) {
+    grid-auto-flow: column;
+  }
+}
+
+.l-acorn__header {
+  @include var(padding-block, unit);
+  @include var(padding-inline, responsive-padding);
+  grid-column: 2;
+  border-bottom: 1px solid var(--border-color-light);
+  background-color: $white;
+}
+
+.l-acorn__nav {
+  position: relative;
+  background-color: $white;
+  display: none;
+
+  @include screen-size(m) {
+    display: block;
+    width: $unit * 20;
+    border-right: 1px solid var(--border-color-light);
+    grid-row: 1/-1;
+    overflow: auto;
+  }
+}
+
+.l-acorn__content {
+  display: flex;
+  flex-direction: column;
+  grid-column: 2;
+  background: var(--color-shade-light);
+
+  .s-acorn\:scroll-content &,
+  .s-acorn\:static-footer &,
+  .s-acorn\:static-header & {
+    overflow: auto;
+  }
+}
+
+.l-acorn__summary {
+  @include var(padding-block, unit);
+  @include var(padding-inline, responsive-padding);
+  border-bottom: 1px solid var(--border-color-light);
+  background-color: $white;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--unit);
+}
+
+.l-acorn__footer {
+  @include var(padding-inline, responsive-padding);
+  border-top: 1px solid var(--border-color-light);
+  background-color: $white;
+  padding-block: $unit;
+  grid-column: 2/-1;
+}
+
+.l-acorn__info {
+  background: $white;
+  padding-top: 0;
+  @include font-size(font-size(milli));
+}
+
+.l-acorn__body {
+  overflow: auto;
+}
+
+.l-acorn__aside {
+  position: relative;
+  background-color: $white;
+  grid-column: 3;
+  grid-row: 1/3;
+  width: $unit * 20;
+  border-left: 1px solid var(--border-color);
+  overflow: auto;
+}
+
+.l-acorn-aside-header {
+  @include var(padding-block, unit);
+  @include var(padding-inline, responsive-padding);
+}
+
+.l-acorn-aside__inner {
+  @include var(padding-block, unit);
+  @include var(padding-inline, responsive-padding);
+}
+
+.l-acorn-aside__close {
+  @include position(absolute, calc(#{$unit}/ 2) calc(#{$unit}/ 2) n n);
+}
+
+.l-acorn__section {
+  &.\+padded {
+    @include var(padding-block, unit);
+    @include var(padding-inline, responsive-padding);
+  }
+  &.\+extra-padded {
+    @include var(padding, responsive-padding);
+  }
+  &.\+scroll {
+    overflow: auto;
+  }
+  &.\+fill {
+    flex: 1;
+  }
+  &.\+border-bottom {
+    border-bottom: 1px solid var(--border-color);
+  }
+}
+
+.\+padded-wings {
+  @include var(padding-left, responsive-padding);
+  @include var(padding-right, responsive-padding);
+}
+
+.\+padded-top {
+  @include var(padding-top, responsive-padding);
+}
+
+.\+padded-bottom {
+  @include var(padding-bottom, responsive-padding);
+}
+
+.l-acorn__island {
+  display: flex;
+  flex: 1;
+  align-items: center;
+}

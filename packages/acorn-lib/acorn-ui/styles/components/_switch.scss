@@ -1,0 +1,9 @@
+.c-switch-container {
+  display: flex;
+  align-items: center;
+  gap: calc(#{$unit}/ 2);
+}
+
+.c-switch {
+  position: relative;
+}

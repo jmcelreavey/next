@@ -1,0 +1,71 @@
+.ac-nav-toggle {
+  --ac-nav-toggle-icon-size: 2;
+  --ac-nav-toggle-bg-color: transparent;
+  --ac-nav-toggle-color: var(--button-bg);
+
+  > .c-button {
+    --button-bg: var(--ac-nav-toggle-color);
+    box-shadow: none;
+    background-color: var(--ac-nav-toggle-bg-color);
+
+    .c-icon {
+      transform: scale(var(--ac-nav-toggle-icon-size));
+    }
+  }
+
+  > input[type="checkbox"],
+  span {
+    position: absolute !important;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+    clip: rect(1px, 1px, 1px, 1px);
+    white-space: nowrap;
+  }
+
+  @include screen-size(m) {
+    display: none;
+  }
+
+  @include screen-size(m-) {
+    + .ac-nav {
+      display: none;
+    }
+
+    &:has(> input[type="checkbox"]:checked) {
+      + .ac-nav {
+        display: grid;
+      }
+    }
+  }
+
+  // Make the nav a drop down if we're using a Nav Toggle
+  // TODO Make this configurable
+  @include screen-size(m-) {
+    + .ac-nav {
+      position: absolute;
+      background: white;
+      z-index: var(--z-index-top);
+      border-radius: var(--dropdown-border-radius);
+      box-shadow: var(--dropdown-shadow);
+      padding: var(--gap);
+      left: var(--gap);
+      top: calc(var(--touch-target) * 2);
+
+      .\+active {
+        .c-button {
+          --ac-nav-item-background-color: var(--color-text);
+        }
+      }
+
+      .c-button {
+        --button-bg: var(--color-text);
+
+        &:not(.ac-nav__group-heading):hover {
+          --ac-nav-item-color: var(--color-text);
+          --ac-nav-item-hover-background-color: var(--color-shade);
+        }
+      }
+    }
+  }
+}

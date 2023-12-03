@@ -1,0 +1,23 @@
+.ac-search-input {
+  position: relative;
+
+  .c-icon {
+    position: absolute;
+    inset-inline-start: 0.75em;
+    inset-block-start: 50%;
+    transform: translateY(-50%);
+  }
+
+  .c-input__box.c-input.\+reset,
+  .ac-search-input__placeholder {
+    background: transparent;
+    margin-inline-end: -0.5em;
+    padding-left: 2em;
+  }
+}
+
+.ac-search-input__placeholder {
+  flex: 1;
+  margin-inline-start: -0.5em;
+  cursor: text;
+}

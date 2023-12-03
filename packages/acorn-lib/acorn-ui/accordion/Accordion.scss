@@ -1,0 +1,99 @@
+.ac-accordion {
+  --ac-accordion-border-color: var(--border-color);
+  --ac-accordion-border: 1px solid var(--ac-accordion-border-color);
+  --ac-accordion-border-radius: var(--radius);
+  --ac-accordion-padding: var(--gap);
+  --ac-accordion-hover-background-color: var(--color-shade-light);
+  --ac-accordion-background-color: white;
+  --ac-accordion-text-color: var(--color-text);
+
+  border: var(--ac-accordion-border);
+  border-radius: var(--ac-accordion-border-radius);
+  background-color: var(--ac-accordion-background-color);
+
+  // Nested Cards
+  .c-card {
+    padding: calc(var(--gap) / 2);
+    border: none;
+    border-radius: calc(var(--ac-accordion-border-radius) / 2);
+    box-shadow: var(--shadow);
+  }
+
+  .p-homepage-section__content & {
+    height: fit-content;
+    --ac-accordion-border: none;
+    box-shadow: var(--shadow);
+    .c-icon {
+      font-size: 1.75rem;
+    }
+
+    .ac-accordion__label {
+      flex-wrap: nowrap;
+    }
+  }
+}
+
+.ac-accordion__label {
+  --button-padding: 1em;
+  --button-height: 3em;
+  --button-line-height: 3em;
+  --button-bg: var(--ac-accordion-text-color);
+
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+
+  &:hover {
+    cursor: pointer;
+    box-shadow: none;
+    background-color: var(--ac-accordion-hover-background-color);
+  }
+
+  .ac-accordion__label-text {
+    white-space: wrap;
+    line-height: 120%;
+    text-align: start;
+  }
+
+  .c-icon {
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .ac-count {
+    margin-inline-start: var(--gap);
+  }
+
+  .\+expanded & {
+    border-bottom: 1px dotted var(--ac-accordion-border-color);
+
+    .c-icon {
+      transform: rotate(180deg);
+    }
+  }
+}
+
+.ac-accordion__content {
+  padding: var(--ac-accordion-padding);
+
+  .ac-mode__header + .c-button.\+toggle-ui {
+    margin-left: var(--gap);
+  }
+
+  .ac-mode .ac-list {
+    .ac-title {
+      padding-bottom: var(--gap);
+
+      border-bottom: 1px solid var(--border-color);
+    }
+    .p-package-menu {
+      .p-package-card + .p-package-card {
+        margin-top: calc(var(--gap) * 2);
+      }
+    }
+  }
+}
+
+.p-admin-form-extras {
+  .ac-accordion .ac-accordion__label {
+    width: 100%;
+  }
+}

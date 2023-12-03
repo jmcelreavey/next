@@ -1,0 +1,53 @@
+.c-pill {
+  &.\+3,
+  &.\+4,
+  &.\+5,
+  &.\+white {
+    --pill-text: var(--color-white);
+    --pill-bg: var(--button-bg);
+    .c-button.\+text:hover {
+      box-shadow: none;
+    }
+    &.\+rev {
+      --pill-bg: var(--color-white);
+      --pill-text: var(--button-bg);
+    }
+  }
+  &.\+3 {
+    --button-bg: var(--button-3);
+    &:hover {
+      box-shadow: $shadow-darken;
+    }
+  }
+  &.\+4 {
+    --button-bg: var(--button-4);
+    &:hover {
+      box-shadow: $shadow-darken;
+    }
+  }
+  &.\+5 {
+    --button-bg: var(--color-purple);
+  }
+  &.\+white {
+    --button-bg: var(--color-white);
+    --pill-text: var(--color-text);
+  }
+
+  &.\+pos {
+    --pill-bg: var(--color-pos-shade);
+    --pill-text: var(--color-pos);
+  }
+
+  &.\+neg {
+    --pill-bg: var(--color-neg-shade);
+    --pill-text: var(--color-neg);
+  }
+
+  &.\+uppercase {
+    text-transform: uppercase;
+  }
+}
+
+.u-line-height-1 {
+  line-height: 1;
+}

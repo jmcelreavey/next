@@ -1,0 +1,65 @@
+.cc-thumbnail {
+  aspect-ratio: var(--thumbnail-aspect-ratio);
+  position: relative;
+  border-radius: calc(#{$radius}/ 2);
+  img {
+    @include position(absolute, 0 n n 0);
+    @include size(100%);
+    object-fit: cover;
+    border-radius: calc(#{$radius}/ 2);
+  }
+
+  &.\+reg {
+    max-width: $unit * 5;
+  }
+
+  //.c-field & {
+  //    width: $unit * 10;
+  //}
+
+  //&.\+mobile-full {
+  //    width: 100%;
+  //    @include screen-size(s) {
+  //        min-width: $unit * 10;
+  //    }
+  //}
+
+  &.\+primary {
+    border: 2px solid var(--color-link);
+  }
+}
+
+.cc-thumbnail__action {
+  @include position(absolute, -8px -8px n n);
+  z-index: 1;
+}
+
+.cc-thumbnail__controls {
+  @include position(absolute, calc(#{$unit} / 2) calc(#{$unit} / 2) n n);
+}
+
+.cc-thumbnail__buttons {
+  @include position(absolute, n calc(#{$unit} / 2) calc(#{$unit} / 2) calc(#{$unit} / 2));
+  &:not(.c-buttons) {
+    display: flex;
+    flex-direction: column;
+    gap: $unit * 0.25;
+  }
+  @media screen and (hover: hover) {
+    .cc-thumbnail & > .c-button {
+      display: none;
+    }
+    .cc-thumbnail:hover & > .c-button {
+      display: inline-block;
+    }
+  }
+}
+
+.\+processing-overlay {
+  overflow: hidden;
+  &:after {
+    content: "";
+    background-color: var(--color-shade-x2);
+    @include position(absolute, 0 0 0 0);
+  }
+}

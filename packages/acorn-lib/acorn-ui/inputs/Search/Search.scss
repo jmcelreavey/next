@@ -1,0 +1,14 @@
+.ac-search {
+  position: relative;
+
+  .c-icon {
+    position: absolute;
+    inset-inline-start: 0.75em;
+    inset-block-start: 50%;
+    transform: translateY(-50%);
+  }
+
+  .c-input.\+text {
+    padding-left: 2em;
+  }
+}

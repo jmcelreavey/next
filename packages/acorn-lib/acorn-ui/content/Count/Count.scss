@@ -1,0 +1,28 @@
+.ac-count {
+  --ac-count-border-radius: var(--button-radius);
+  --ac-count-background-color: var(--color-shade-blue);
+  --ac-count-text-color: var(--color-1);
+  --ac-count-padding: 0.5em;
+
+  border-radius: var(--ac-count-border-radius);
+  background-color: var(--ac-count-background-color);
+  color: var(--ac-count-text-color);
+  padding: var(--ac-count-padding);
+  line-height: 1em;
+  font-weight: var(--font-weight-bold);
+
+  &.\+red {
+    --ac-count-background-color: var(--color-neg-shade);
+    --ac-count-text-color: var(--color-neg);
+  }
+
+  &.\+green {
+    --ac-count-background-color: var(--color-pos-shade);
+    --ac-count-text-color: var(--color-pos);
+  }
+
+  &.\+orange {
+    --ac-count-background-color: var(--color-warn-shade);
+    --ac-count-text-color: var(--color-warn);
+  }
+}

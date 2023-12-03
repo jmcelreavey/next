@@ -1,0 +1,85 @@
+.ac-header {
+  --ac-header-bg-color: var(--color-site);
+  --ac-header-padding: var(--unit);
+  --ac-header-max-width: auto;
+
+  background-color: var(--ac-header-bg-color);
+  padding: var(--ac-header-padding);
+  margin-inline-end: auto;
+  margin-inline-start: auto;
+  width: 100%;
+  max-width: var(--ac-header-max-width);
+
+  &:not(.ac-website &) {
+    display: grid;
+    gap: calc(var(--gap) / 2);
+    grid-template-areas:
+      "title title"
+      "summary summary"
+      "actions actions";
+
+    @include screen-size(m) {
+      gap: var(--gap);
+      grid-template-columns: 1fr auto;
+      grid-template-areas:
+        "title actions"
+        "summary summary";
+    }
+
+    // If we're using the header inside a card component
+    // or timeline then reset some of the overriding styles
+    .c-card &,
+    .ac-timeline & {
+      --ac-header-bg-color: transparent;
+      --ac-header-padding: 0;
+      --ac-header-max-width: 100%;
+      align-items: center;
+    }
+
+    .ac-timeline & {
+      gap: 0;
+    }
+  }
+
+  &.\+full-width {
+    --ac-header-max-width: 100%;
+    --ac-header-padding: 0;
+
+    > div {
+      padding-block: var(--unit);
+    }
+
+    > div:first-child {
+      padding-inline-start: var(--unit);
+    }
+    > div:last-child {
+      padding-inline-end: var(--unit);
+    }
+  }
+}
+
+.ac-header__title {
+  grid-area: title;
+
+  &:not(.c-card &) {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap);
+
+    @include screen-size(m) {
+      gap: calc(var(--gap) * 2);
+    }
+  }
+}
+
+.ac-header__actions {
+  grid-area: actions;
+  display: flex;
+  gap: var(--gap);
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.ac-header__summary {
+  grid-area: summary;
+}

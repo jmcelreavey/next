@@ -1,0 +1,25 @@
+.ac-blank-slate {
+    --ac-blank-slate-border: 1px dashed var( --border-color );
+    --ac-blank-slate-border-radius: var( --button-radius );
+    --ac-blank-slate-align-items: center;
+    --ac-blank-slate-padding: var( --unit );
+    --ac-blank-slate-text-color: var( --color-text );
+
+    border: var(--ac-blank-slate-border);
+    border-radius: var(--ac-blank-slate-border-radius);
+    padding: var( --ac-blank-slate-padding );
+    color: var( --ac-blank-slate-text-color );
+    display: flex;
+    flex-direction: column;
+    gap: var( --gap );
+    align-items: var( --ac-blank-slate-align-items );
+
+    .c-button {
+        --button-bg: var(--ac-blank-slate-text-color);
+    }
+
+    > img {
+        width: 2em;
+        height: 2em;
+    }
+}

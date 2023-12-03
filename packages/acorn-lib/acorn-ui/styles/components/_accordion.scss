@@ -1,0 +1,135 @@
+@use "sass:math";
+.cc-accordion {
+  grid-template-columns: 1fr;
+
+  > .cc-accordion__item {
+    @include margin(n n math.div($margin, 3) n);
+    border-radius: $radius;
+    background-color: white;
+
+    a {
+      color: var(--color-link);
+    }
+
+    &:hover {
+      a {
+        --color-link: var(--color-link);
+      }
+    }
+
+    &.\+active {
+      // box-shadow: 0 0 0 2px $blue, inset 0 0 0 20rem white;
+
+      a {
+        --color-link: var(--color-link);
+        text-decoration: none;
+      }
+
+      .cc-accordion__item-header {
+        > .c-icon:last-child {
+          transform: rotateX(180deg);
+        }
+      }
+    }
+  }
+
+  &.\+nav {
+    > .cc-accordion__item {
+      a {
+        color: white;
+      }
+
+      // Opened Nav Items
+      &.\+active,
+      &:hover {
+        background-color: $shade;
+      }
+    }
+  }
+}
+
+.cc-accordion__item {
+  .\+primary & {
+    box-shadow: $shadow-light;
+  }
+}
+
+.cc-accordion__item-header {
+  display: flex !important;
+  font-weight: bold;
+  align-items: center;
+  @include padding($padding);
+  opacity: 1;
+
+  &:active {
+    text-decoration: none;
+  }
+
+  .\+active & {
+    padding-bottom: 0;
+  }
+
+  .\+nav & {
+    @include padding(math.div($padding, 2));
+    text-transform: uppercase;
+    opacity: 0.8;
+  }
+
+  .c-icon:last-child {
+    opacity: $fade;
+  }
+
+  &:hover {
+    opacity: 1;
+    text-decoration: none;
+
+    .c-icon {
+      opacity: 1;
+    }
+  }
+
+  > .c-icon:first-child {
+    @include margin(n math.div($unit, 3) n n);
+  }
+
+  > .c-icon:last-child {
+    justify-self: flex-end;
+  }
+}
+
+.cc-accordion__item-content {
+  display: none;
+
+  .cc-accordion__item.\+active & {
+    display: block;
+    padding: 0;
+  }
+
+  .cc-accordion.\+nav .\+active & {
+    display: block;
+    @include padding(n n math.div($padding, 2) n);
+  }
+
+  .c-accordion__nav-item {
+    a {
+      opacity: $fade;
+      @include padding(n n n $unit * 2);
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+
+    &.\+active a {
+      opacity: 1;
+    }
+  }
+}
+
+.cc-accordion__item-header-text {
+  flex: 1;
+}
+
+.cc-accordion__item-header + .cc-accordion__item-content > .cc-list__section-header {
+  margin-top: 0;
+}

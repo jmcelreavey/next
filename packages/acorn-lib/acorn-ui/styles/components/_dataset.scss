@@ -1,0 +1,207 @@
+@use "sass:math";
+
+/*
+ * A dataset is a combination of a standard table of CRUD items
+ * along with actions at the top and bottom of the table
+ */
+
+.cc-dataset {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  height: 100%;
+}
+
+.cc-dataset__body {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-rows: auto 1fr;
+}
+
+.cc-dataset__aside {
+  grid-column: 2;
+  grid-row: 1/3;
+  overflow: auto;
+}
+
+.cc-dataset__list {
+  width: 100%;
+  overflow: auto;
+}
+
+//Need to swap the set px value with a variable for masthead height
+.cc-dataset__filters {
+  @include position(fixed, 73px 0 0 n);
+  animation: slide-in-from-right 0.2s linear;
+  background: white;
+  padding: $unit;
+  box-shadow: $shadow, $shadow-ambient;
+  margin-left: $unit;
+  z-index: 2;
+}
+
+.cc-dataset__actions {
+  display: grid;
+  align-items: center;
+  grid-template-columns: auto;
+  position: relative;
+  z-index: 0;
+
+  &.\+top {
+    @include margin(n n $padding n);
+  }
+
+  &.\+bottom {
+    @include margin($padding n n n);
+  }
+}
+
+.cc-dataset__actions-filtering {
+  display: flex;
+  justify-content: space-between;
+}
+
+.cc-dataset-filtering {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gap);
+  justify-content: space-between;
+
+  .cc-dataset-filtering__filters {
+    display: flex;
+    align-items: center;
+    gap: var(--gap);
+  }
+}
+
+.cc-dataset__bulk-actions {
+  @include margin(n n $unit n, dir);
+  @include padding($unit * 0.5 $unit, dir);
+  z-index: 1;
+  background: var(--color-dark);
+  color: white;
+  border-radius: $radius;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  &.\+fixed {
+    @include padding($padding);
+    position: fixed;
+    top: auto;
+    z-index: 3;
+    left: var(--sidbar-width);
+    right: 47px;
+    margin-top: -32px;
+  }
+
+  .c-button {
+    &:hover {
+      color: var(--color-white);
+    }
+  }
+}
+
+.cc-dataset__bulk-actions-selection {
+  display: flex;
+  align-items: center;
+  gap: math.div($unit, 2);
+}
+
+.cc-dataset-actions__pager {
+  align-self: flex-end;
+}
+
+.cc-dataset__table {
+  @extend .\+padded-cells !optional;
+  position: relative;
+  z-index: 2;
+  overflow: hidden;
+  border-radius: $radius;
+  box-shadow: $shadow-light;
+
+  td {
+    vertical-align: middle;
+  }
+
+  @include hover {
+    tbody tr,
+    .c-table__body .c-table__row {
+      &:hover {
+        background-color: $table-row-hover-color;
+      }
+      &:active {
+        background-color: $table-row-active-color;
+      }
+    }
+  }
+
+  // Table Header
+  thead {
+    th.c-table__cell {
+      @include font-size(font-size(milli));
+      @include padding($padding n n n);
+    }
+  }
+
+  // Table Rows
+  .c-table__row {
+    td {
+      border-top: 1px solid var(--border-color-light);
+    }
+
+    &:hover {
+      .c-table__cell.\+actions > .c-button {
+        visibility: visible;
+      }
+    }
+  }
+
+  .c-table__row-draghandle {
+    cursor: row-resize;
+  }
+
+  // Table Cell
+  .c-table__cell {
+    .c-pill,
+    .c-button {
+      @include margin(n n n math.div($unit, 3));
+
+      &:first-child {
+        @include margin(n n n 0);
+      }
+    }
+
+    &.\+primary {
+      a {
+        display: flex;
+        align-items: center;
+
+        &:after {
+          width: $unit;
+          height: $unit;
+          display: block;
+          content: "";
+          background-image: url("/assets/arrow_forward.svg");
+          @include margin(n n n math.div($unit, 4));
+          opacity: 0;
+          transition: opacity 150ms ease-in;
+        }
+
+        &:hover {
+          &:after {
+            opacity: 1;
+          }
+        }
+      }
+    }
+
+    &.\+actions {
+      text-align: right;
+
+      > .c-button {
+        visibility: hidden;
+      }
+    }
+  }
+}

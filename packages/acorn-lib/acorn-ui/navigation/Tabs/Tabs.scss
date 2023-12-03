@@ -1,0 +1,77 @@
+@use "sass:math";
+
+.ac-tabs {
+  --ac-tabs-background-color: var(--color-site);
+  --ac-tabs-padding: 0;
+  --ac-tabs-content-padding: var(--gap) 0;
+  --ac-tabs-tab-item-padding: 0 1em;
+  --ac-tabs-tab-item-height: 3em;
+  --ac-tabs-tab-item-color: var(--color-1);
+  --ac-tabs-tab-item-font-size: 1.1em;
+  --ac-tabs-pill-bg-color: var(--color-shade-light);
+  --ac-tabs-current-pill-bg-color: var(--color-1-shade);
+
+  padding: var(--ac-tabs-padding);
+  background-color: var(--ac-tabs-background-color);
+  overflow: auto;
+
+  > .ac-tab__content,
+  .c-tab-content {
+    padding: var(--ac-tabs-content-padding);
+  }
+
+  .ac-tab__item,
+  .c-tab-item {
+    text-align: center;
+    color: var(--color-text-alt);
+    display: flex;
+    gap: calc(var(--gap) / 2);
+    padding: 0 0.5em;
+    align-items: center;
+    line-height: var(--ac-tabs-tab-item-height);
+    height: var(--ac-tabs-tab-item-height);
+    background-color: transparent;
+    border-bottom: 2px solid var(--color-site);
+    white-space: nowrap;
+
+    @include screen-size(m) {
+      gap: var(--gap);
+      font-size: var(--ac-tabs-tab-item-font-size);
+      padding: var(--ac-tabs-tab-item-padding);
+    }
+
+    font-weight: var(--font-weight-bold);
+
+    .c-pill {
+      --button-padding: 0.5em;
+      --pill-bg: var(--ac-tabs-pill-bg-color);
+      border: 1px dotted var(--color-text-alt);
+      color: var(--color-text-alt);
+    }
+
+    &.\+current {
+      color: var(--ac-tabs-tab-item-color);
+      border-color: var(--ac-tabs-tab-item-color);
+
+      .c-pill {
+        --pill-bg: var(--ac-tabs-current-pill-bg-color);
+        border-color: var(--ac-tabs-tab-item-color);
+        border-style: solid;
+        color: var(--ac-tabs-tab-item-color);
+      }
+    }
+
+    &:hover {
+      color: var(--ac-tabs-tab-item-color);
+      background: transparent;
+      border-color: var(--ac-tabs-tab-item-color);
+
+      .c-pill {
+        --pill-bg: var(--ac-tabs-current-pill-bg-color);
+        border-color: var(--ac-tabs-tab-item-color);
+        border-style: solid;
+        color: var(--ac-tabs-tab-item-color);
+      }
+    }
+  }
+}

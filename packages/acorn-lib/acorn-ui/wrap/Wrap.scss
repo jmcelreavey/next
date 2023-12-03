@@ -1,0 +1,15 @@
+.ac-wrap {
+  --ac-wrap-width: var(--fixed-width);
+
+  max-width: var(--ac-wrap-width);
+  margin-right: auto;
+  margin-left: auto;
+
+  &.\+narrow {
+    --ac-wrap-width: var(--narrow-width);
+  }
+
+  &.\+align-start {
+    margin: 0;
+  }
+}

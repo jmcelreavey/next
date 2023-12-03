@@ -1,0 +1,114 @@
+import { Meta, Canvas } from "@storybook/addon-docs";
+import { ListBox } from "./ListBox";
+import { Button } from "morse-react";
+
+# ListBox
+
+A ListBox presents its children as a list within an outlined box. It internally
+handles keyboard events to support a moveable 'highlight' allowing the user to
+select items within the list. The component also handles focus trapping add
+will scroll highlighted or selected items into view automatically.
+
+<Canvas>
+  <ListBox>
+    <ListBox.Head>The head</ListBox.Head>
+    <ListBox.Body>
+      <ListBox.Item>This is item 1</ListBox.Item>
+      <ListBox.Item>This is item 2</ListBox.Item>
+      <ListBox.Item>This is item 3</ListBox.Item>
+      <ListBox.Item>This is item 4</ListBox.Item>
+      <ListBox.Item>This is item 5</ListBox.Item>
+      <ListBox.Item>This is item 6</ListBox.Item>
+      <ListBox.Item>This is item 7</ListBox.Item>
+      <ListBox.Item>This is item 8</ListBox.Item>
+      <ListBox.Item>This is item 9</ListBox.Item>
+      <ListBox.Item>This is item 10</ListBox.Item>
+      <ListBox.Item>This is item 11</ListBox.Item>
+      <ListBox.Item>This is item 12</ListBox.Item>
+      <ListBox.Item>This is item 13</ListBox.Item>
+    </ListBox.Body>
+    <ListBox.Foot>The foot</ListBox.Foot>
+  </ListBox>
+</Canvas>
+
+Note that the ListBox does not track its own state so selecting an item
+will not activated the selected state. Usually ListBox is used inside
+smarter components that manage the state of which item is selected.
+
+## Selected Items
+
+ListBoxItem components have a 'selected' prop to allow you to
+indicate which item is selected.
+
+<Canvas>
+  <ListBox>
+    <ListBox.Body>
+      <ListBox.Item>This is item 1</ListBox.Item>
+      <ListBox.Item>This is item 2</ListBox.Item>
+      <ListBox.Item>This is item 3</ListBox.Item>
+      <ListBox.Item selected>This is item 4</ListBox.Item>
+      <ListBox.Item>This is item 5</ListBox.Item>
+    </ListBox.Body>
+  </ListBox>
+</Canvas>
+
+ListBox has a `onItemSelected` prop that allows you to respond to
+interactions with the listbox. Items can be selected by clicking
+or using the arrow keys and pressing Enter to confirm. The event
+is passed the index of the item the user selected.
+
+<Canvas>
+  <ListBox>
+    <ListBox.Body onItemSelected={(index) => alert("You selected row index " + index)}>
+      <ListBox.Item>This is item 1</ListBox.Item>
+      <ListBox.Item>This is item 2</ListBox.Item>
+      <ListBox.Item>This is item 3</ListBox.Item>
+      <ListBox.Item selected>This is item 4</ListBox.Item>
+      <ListBox.Item>This is item 5</ListBox.Item>
+      <ListBox.Item>This is item 6</ListBox.Item>
+      <ListBox.Item>This is item 7</ListBox.Item>
+      <ListBox.Item>This is item 8</ListBox.Item>
+    </ListBox.Body>
+  </ListBox>
+</Canvas>
+
+## Disabled Items
+
+ListBoxItem components have a 'disabled' prop to allow you to
+indicate which item should not be selected. These will be
+skipped over when highlighting items using keyboard control.
+
+> Note disabled items in this basic component can still
+> be marked as selected, and will still emit events if
+> clicked on. It is up to the user of the component to
+> understand that disabled items cannot be selected.
+
+<Canvas>
+  <ListBox>
+    <ListBox.Body>
+      <ListBox.Item>This is item 1</ListBox.Item>
+      <ListBox.Item disabled>This is item 2 - disabled</ListBox.Item>
+      <ListBox.Item>This is item 3</ListBox.Item>
+      <ListBox.Item disabled>This is item 4 - disabled</ListBox.Item>
+      <ListBox.Item>This is item 5</ListBox.Item>
+    </ListBox.Body>
+  </ListBox>
+</Canvas>
+
+## Item Content
+
+Items that contain simple text strings will appear like a traditional list, however
+you can pass any content you like.
+
+<Canvas>
+  <ListBox>
+    <ListBox.Body>
+      <ListBox.Item>
+        <span className="u-font-bold">This is bold</span> text.
+      </ListBox.Item>
+      <ListBox.Item>
+        <div className="u-pad u-marg">This content is padded</div>
+      </ListBox.Item>
+    </ListBox.Body>
+  </ListBox>
+</Canvas>

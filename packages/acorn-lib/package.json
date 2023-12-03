@@ -1,0 +1,43 @@
+{
+  "name": "acorn-lib",
+  "version": "0.1.0",
+  "main": "./index.ts",
+  "types": "./index.ts",
+  "scripts": {
+    "clean": "rm -rf .turbo node_modules",
+    "with-env": "dotenv -e ../../.env --",
+    "lint": "eslint .",
+    "lint:fix": "yarn lint --fix",
+    "build-storybook": "storybook build",
+    "storybook": "storybook dev -p 6006"
+  },
+  "dependencies": {
+    "@types/react-is": "^18.2.1",
+    "dotenv-cli": "^7.2.1",
+    "eslint": "^8.45.0",
+    "morse-css": "^v3.1.8",
+    "morse-react": "v3.2.0-alpha.1",
+    "react-is": "^18.0.3"
+  },
+  "eslintConfig": {
+    "root": true,
+    "rules": {
+      "@typescript-eslint/no-explicit-any": "off",
+      "@typescript-eslint/ban-types": "off",
+      "@typescript-eslint/ban-ts-comment": "off",
+      "@typescript-eslint/no-empty-function": "off",
+      "@typescript-eslint/no-redundant-type-constituents": "off",
+      "@typescript-eslint/no-empty-interface": "off",
+      "@typescript-eslint/no-unsafe-member-access": "off",
+      "@typescript-eslint/no-unsafe-assignment": "off",
+      "@typescript-eslint/no-unsafe-call": "off",
+      "@typescript-eslint/no-unsafe-return": "off",
+      "@typescript-eslint/no-unused-vars": "off",
+      "@typescript-eslint/prefer-nullish-coalescing": "off",
+      "@typescript-eslint/no-unsafe-argument": "off",
+      "@typescript-eslint/no-floating-promises": "off",
+      "prefer-const": "off",
+      "no-case-declarations": "off"
+    }
+  }
+}

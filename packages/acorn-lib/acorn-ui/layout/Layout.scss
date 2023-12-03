@@ -1,0 +1,53 @@
+.ac-layout {
+  gap: var(--gap);
+
+  &.\+spaced-apart,
+  &.\+inline,
+  &.\+centered {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  &.\+nowrap {
+    flex-wrap: nowrap;
+  }
+
+  &.\+spaced-apart {
+    justify-content: space-between;
+  }
+
+  &.\+inline {
+    justify-content: flex-start;
+  }
+
+  &.\+centered {
+    justify-content: center;
+  }
+
+  &.\+align-end {
+    justify-content: flex-end;
+  }
+
+  &.\+two-col {
+    display: grid;
+    grid-template-areas:
+      "content content content content content content"
+      "aside aside aside aside aside aside";
+
+    @include screen-size(m) {
+      grid-template-areas: "content content content content aside aside";
+    }
+
+    gap: var(--gap);
+    grid-template-columns: repeat(6, 1fr);
+
+    > *:first-child {
+      grid-area: content;
+    }
+
+    > *:last-child {
+      grid-area: aside;
+    }
+  }
+}

@@ -1,0 +1,50 @@
+.ac-fieldset {
+  --ac-fieldset-padding: 0;
+  --ac-fieldset-margin: 0;
+  --ac-fieldset-bg-color: transparent;
+  --ac-fieldset-border-radius: 0;
+  --ac-fieldset-border: none;
+  --ac-fieldset-legend-font-size: 1.5em;
+  --ac-fieldset-legent-text-color: var( --color-text );
+
+  margin: var(--ac-fieldset-margin);
+  padding: var(--ac-fieldset-padding);
+  background-color: var(--ac-fieldset-bg-color);
+  border-radius: var(--ac-fieldset-border-radius);
+  border: var(--ac-fieldset-border);
+
+  legend {
+    padding: 0;
+    float: left;
+    font-size: var(--ac-fieldset-legend-font-size);
+    margin-block-end: 1em;
+    font-weight: var(--font-weight-bold);
+    position: relative;
+    color: var( --ac-fieldset-legend-text-color );
+
+    > .c-icon {
+      transform: translateY(0.2em);
+      margin-inline-end: calc( var( --gap ) / 2 );
+    }
+
+    &:after {
+      content: "";
+      display: block;
+      clear: both;
+      width: 100%;
+    }
+
+    + .c-field-group {
+      clear: both;
+    }
+  }
+
+  + .ac-fieldset {
+    margin-block-start: var(--gap);
+  }
+}
+
+.ac-fieldset + .c-button,
+.ac-fieldset + .c-button-bar {
+  max-width: var(--ac-fieldset-max-width);
+}

@@ -1,0 +1,41 @@
+{
+  "name": "next",
+  "private": true,
+  "scripts": {
+    "build": "turbo build",
+    "db:start": "turbo db:start",
+    "db:push": "turbo db:push",
+    "db:studio": "turbo db:studio",
+    "db:generate": "turbo db:generate",
+    "db:migrate": "turbo db:migrate",
+    "db:nuke": "turbo db:nuke",
+    "db:seed": "turbo db:seed",
+    "dev": "turbo db:start && turbo db:push db:generate && turbo dev",
+    "postinstall": "turbo postinstall",
+    "lint": "turbo lint && manypkg fix",
+    "type-check": "turbo type-check",
+    "start": "turbo start",
+    "prisma": "turbo prisma",
+    "test": "turbo test",
+    "cypress:dev": "turbo dev",
+    "cypress:run": "cd packages/obsidian && npm install && npx cypress run --config video=false --env tags=@passing",
+    "cypress:open": "cd packages/obsidian && npm install && npx cypress open",
+    "build-storybook": "turbo build-storybook",
+    "storybook": "turbo storybook",
+    "prepare": "husky install"
+  },
+  "engines": {
+    "node": ">=v20.10.0"
+  },
+  "packageManager": "npm@10.2.3",
+  "workspaces": [
+    "apps/gcd",
+    "packages/acorn-lib"
+  ],
+  "dependencies": {
+    "turbo": "^1.10.16"
+  },
+  "devDependencies": {
+    "husky": "^8.0.0"
+  }
+}

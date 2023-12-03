@@ -1,0 +1,67 @@
+@use "sass:math";
+
+.ac-masthead {
+  --ac-masthead-bg: var(--color-1);
+  --ac-masthead-height: var(--touch-target);
+  --ac-masthead-padding: 0.5em;
+  --ac-masthead-item-height: calc(var(--ac-masthead-height) - var(--ac-masthead-padding));
+  --ac-masthead-button-color: var(--color-2);
+  --ac-masthead-text-button-color: var(--color-2);
+
+  background-color: var(--ac-masthead-bg);
+
+  > header {
+    display: flex;
+    gap: var(--ac-masthead-padding);
+    padding: var(--ac-masthead-padding);
+    flex-wrap: wrap;
+    justify-content: flex-end;
+
+    @include screen-size(m-) {
+      gap: 0;
+    }
+  }
+
+  .ac-breadcrumbs {
+    align-items: center;
+    flex-grow: 1;
+    --ac-breadcrumbs-link-style: none;
+    --ac-breadcrumbs-link-color: var(--color-text-alt);
+    --ac-breadcrumbs-link-hover-style: underline;
+  }
+
+  .ac-search {
+    .c-input {
+      --field-border: 0;
+      --input-height: var(--ac-masthead-item-height);
+    }
+  }
+
+  .ac-avatar {
+    --ac-avatar-size: calc(var(--ac-masthead-item-height) - 0.5em);
+    --ac-avatar-font-size: #{font-size(micro)};
+  }
+
+  .c-button {
+    --button-bg: var(--ac-masthead-button-color);
+    --button-height: var(--ac-masthead-item-height);
+    --button-line-height: var(--ac-masthead-item-height);
+
+    &.\+text {
+      --button-bg: var(--ac-masthead-text-button-color);
+
+      &:hover {
+        --color-text: var(--ac-masthead-button-color);
+        background-color: var(--color-shade);
+      }
+    }
+  }
+
+  .c-button__text {
+    padding-inline-end: var(--gap);
+
+    @include screen-size(m-) {
+      display: none;
+    }
+  }
+}

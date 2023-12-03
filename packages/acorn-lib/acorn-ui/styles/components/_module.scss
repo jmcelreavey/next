@@ -1,0 +1,200 @@
+.cc-module {
+  box-shadow: $shadow-light;
+  background-color: $white;
+  border-radius: $radius;
+  @include var(padding, unit);
+
+  &.\+shaded {
+    @extend .cc-module;
+    @include padding($padding);
+    box-shadow: none;
+    //background-color: rgba($brand-color-3, $shade-amount * 0.25);
+    background-color: var(--color-fade);
+  }
+
+  &.\+dark {
+    @extend .cc-module;
+    @include padding($padding);
+    box-shadow: none;
+    background-color: var(--color-text);
+    color: var(--color-white);
+    a,
+    .c-button {
+      color: var(--color-white);
+    }
+    .c-button:hover {
+      background-color: var(--color-white);
+      color: var(--color-text);
+    }
+  }
+
+  &.\+neg {
+    @extend .cc-module;
+    @include padding($padding);
+    box-shadow: none;
+    background-color: var(--color-neg);
+    color: white;
+  }
+
+  &.\+no-pad {
+    padding: 0;
+  }
+
+  &.\+extra-pad {
+    @include var(padding, responsive-padding);
+  }
+
+  &.\+extra-pad-inline {
+    @include var(padding-inline, responsive-padding);
+  }
+
+  &.\+no-shadow {
+    box-shadow: none;
+  }
+
+  &.\+simple {
+    background-color: transparent;
+    box-shadow: none;
+    padding: 0;
+  }
+
+  &.\+full-width {
+    width: 100%;
+    flex: 1 0 100%;
+  }
+
+  &.\+clickable {
+    cursor: pointer;
+  }
+
+  //&.\+has-menu {
+  //    display: flex;
+  //    align-items: flex-start;
+  //    justify-content: space-between;
+  //}
+}
+
+.cc-module__header {
+  .\+has-menu & {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+}
+
+.cc-module__content {
+}
+
+.cc-module__actions {
+}
+
+.cc-module__inner {
+  @include var(padding, responsive-padding);
+}
+
+.cc-module__buttons {
+  @include padding($unit * 0.25 n n n);
+  display: flex;
+  gap: $unit;
+  grid-area: button;
+
+  &.\+centered {
+    justify-content: center;
+  }
+
+  &.\+mobile-stacked {
+    @include screen-size(m-) {
+      flex-direction: column;
+    }
+  }
+}
+
+.cc-module__title {
+  font-size: font-size(beta);
+  @include margin(n n $unit n);
+}
+
+.u-marg-auto {
+  @include media-query($mqs) {
+    @include margin(auto);
+  }
+}
+
+/// TODO reconcile
+.l-acorn-module {
+  box-shadow: $shadow;
+  background-color: $white;
+  border-radius: $radius;
+  @include var(padding, unit);
+
+  &.\+shaded {
+    @extend .l-acorn-module;
+    @include padding($padding);
+    box-shadow: none;
+    //background-color: rgba($brand-color-3, $shade-amount * 0.25);
+    background-color: var(--color-fade);
+  }
+
+  &.\+dark {
+    @extend .l-acorn-module;
+    @include padding($padding);
+    box-shadow: none;
+    background-color: var(--color-text);
+  }
+
+  &.\+no-pad {
+    padding: 0;
+  }
+
+  &.\+extra-pad {
+    @include var(padding, responsive-padding);
+  }
+
+  &.\+extra-pad-inline {
+    @include var(padding-inline, responsive-padding);
+  }
+
+  &.\+no-shadow {
+    box-shadow: none;
+  }
+
+  &.\+simple {
+    background-color: transparent;
+    box-shadow: none;
+    padding: 0;
+  }
+  &.\+full-width {
+    width: 100%;
+    flex: 1 0 100%;
+  }
+
+  &.\+clickable {
+    cursor: pointer;
+  }
+}
+
+.l-acorn-module__inner {
+  @include var(padding, responsive-padding);
+}
+
+.l-acorn-module__buttons {
+  @include padding($unit * 0.25 n n n);
+  display: flex;
+  gap: $unit;
+  grid-area: button;
+
+  &.\+centered {
+    justify-content: center;
+  }
+
+  &.\+mobile-stacked {
+    @include screen-size(m-) {
+      flex-direction: column;
+    }
+  }
+}
+
+.l-acorn-module__title {
+  font-size: font-size(beta);
+  @include margin(n n $unit n);
+}

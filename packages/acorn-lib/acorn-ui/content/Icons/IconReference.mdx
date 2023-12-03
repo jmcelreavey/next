@@ -1,0 +1,81 @@
+# IconReference
+
+import { Canvas, IconGallery, IconItem, Meta } from "@storybook/addon-docs"; import { Icon } from "morse-react"; import { AcornIcon } from "./AcornIcon";
+
+## Icon Reference
+
+Use this default icon set for your Acorn projects but feel free to add or update icons.
+
+\
+
+
+**Contents**
+
+* [Reference Gallery](IconReference.mdx#reference)
+* [How to update icons](IconReference.mdx#adding-updating)
+
+**Important**
+
+* Icons are included in each project in a single `symbol-defs.svg` file containing references to all the icons.
+* Icons are referenced directly in Acorn components so the **naming** of icons is important.
+* Icons names all start with `icon-`
+* Instead of using the names directly, please use the AcornIcon lookup dictionary e.g. AcornIcon.Action.AddCircle
+
+\
+
+
+### Reference Gallery <a href="#reference" id="reference"></a>
+
+\
+
+
+#### Actions
+
+#### Arrows
+
+#### Business
+
+#### Cloud
+
+#### Communication
+
+#### Maps
+
+#### Media
+
+#### Navigation
+
+#### Notifications
+
+#### Objects
+
+#### People
+
+\
+
+
+### Adding & Updating Icons <a href="#adding-updating" id="adding-updating"></a>
+
+Follow these steps to add or update icons in your project. Every new Acorn project should start with this default set of icons and update and add accordingly.
+
+#### Using Figma (custom icons)
+
+* Visit the [Icons page in the Acorn Figma project](https://www.figma.com/file/zKPFQ5JY8yxZdEnpVWsVJf/Acorn-Reference-Library?type=design\&node-id=22-105)
+* Add and/or update your icons and export them all as svgs
+* Go to [IcoMoon](https://icomoon.io/app/)
+* Add your new icons set by **importing** your full set of icons to a new project
+* Click the **generate svg** tab at the bottom of the screen
+* Click the preferences button at the top of the screen and make sure the Class Prefix is set to `icon-`
+* Click the download button
+* Copy and overwrite the `symbol-defs.svg` file in your project
+
+#### Using IcoMoon
+
+* Download the [IcoMoon Project File](https://drive.google.com/file/d/1zIgnfGiQTnn\_eykYyXz3-nfDNQ7-1wXk/view?usp=sharing)
+* Go to the [IcoMoon projects section](https://icomoon.io/app/#/projects)
+* Click the **Import Project** button and import your `json` file
+* Load the project and add any new icons from the IcoMoon library
+* Click the **generate svg** tab at the bottom of the screen
+* Click the preferences button at the top of the screen and make sure the Class Prefix is set to `icon-`
+* Click the download button
+* Copy and overwrite the `symbol-defs.svg` file in your project

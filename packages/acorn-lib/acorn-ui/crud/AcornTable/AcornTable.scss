@@ -1,0 +1,141 @@
+@use "sass:math";
+
+.ac-table {
+  --ac-datatable-bg-color: white;
+  --ac-datatable-border-radius: var(--radius);
+  --ac-datatable-box-shadow: var(--shadow-heavy);
+  --ac-datatable-border: none;
+  --ac-datatable-header-bg-color: white;
+  --ac-datatable-header-font-size: 0.9em;
+  --ac-datatable-header-font-color: var(--color-text);
+  --ac-datatable-header-padding: 0.75em;
+  --ac-datatable-cell-padding: 0.5em 0.75em;
+  --ac-datatable-row-border: 1px solid var(--border-color);
+  --ac-datatable-hover-bg-color: var(--color-shade);
+  --ac-datatable-button-color: var(--button-bg);
+  --ac-datatable-footer-padding: 1.2em 0.75em;
+
+  &.\+no-style {
+    --ac-datatable-bg-color: none;
+    --ac-datatable-border-radius: 0;
+    --ac-datatable-box-shadow: none;
+    --ac-datatable-border: none;
+    --ac-datatable-row-border: none;
+    --ac-datatable-hover-bg-color: none;
+  }
+
+  .c-table {
+    border: var(--ac-datatable-border);
+    border-radius: var(--ac-datatable-border-radius);
+    border-spacing: 0;
+    border-collapse: separate;
+    box-shadow: var(--ac-datatable-box-shadow);
+
+    thead {
+      background-color: var(--ac-datatable-header-bg-color);
+
+      th,
+      .c-table__cell {
+        color: var(--ac-datatable-header-font-color);
+        font-size: var(--ac-datatable-header-font-size);
+        padding: var(--ac-datatable-header-padding);
+        font-weight: var(--font-weight-semibold);
+
+        &:first-child {
+          border-radius: var(--ac-datatable-border-radius) 0 0 0;
+        }
+
+        &:last-child {
+          border-radius: 0 var(--ac-datatable-border-radius) 0 0;
+        }
+      }
+    }
+
+    .c-table__row,
+    tr {
+      &:hover {
+        td,
+        .c-table__cell {
+          transition: all 0s;
+          background-color: var(--ac-datatable-hover-bg-color);
+        }
+
+        th.c-table__cell {
+          background-color: transparent;
+        }
+      }
+    }
+
+    .c-table__row,
+    tr.\+no-hover {
+      &:hover {
+        td,
+        .c-table__cell {
+          transition: all 0s;
+          background-color: none;
+        }
+      }
+    }
+
+    .c-table__cell,
+    td {
+      padding: var(--ac-datatable-cell-padding);
+
+      &:has(.ac-table__cell-actions) {
+        padding-block: 0;
+      }
+    }
+
+    tbody {
+      td:first-child {
+        a {
+          font-weight: var(--font-weight-semibold);
+        }
+      }
+
+      .c-table__cell,
+      td {
+        border-top: var(--ac-datatable-row-border);
+      }
+
+      .c-table__row:last-child {
+        .c-table__cell,
+        td {
+          &:first-child {
+            border-radius: 0 0 0 var(--ac-datatable-border-radius);
+          }
+
+          &:last-child {
+            border-radius: 0 0 var(--ac-datatable-border-radius) 0;
+          }
+        }
+      }
+    }
+  }
+
+  .c-button:not(.\+neg) {
+    --button-bg: var(--ac-datatable-button-color);
+  }
+}
+
+.ac-table__cell-actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  vertical-align: middle;
+  padding-block-start: 0.25em;
+  padding-block-end: 0.25em;
+
+  &.\+align-start {
+    justify-content: flex-start;
+  }
+
+  .c-button {
+    line-height: calc(var(--touch-target) - 0.5em);
+    min-height: calc(var(--touch-target) - 0.5em);
+  }
+
+  .c-table__cell:has(&) {
+    vertical-align: middle;
+  }
+}
